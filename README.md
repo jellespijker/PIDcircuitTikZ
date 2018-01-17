@@ -5,7 +5,7 @@
 An extension for the Tikz circuit library. Which allows the drawing of P&IDs.
 Symbols are added when needed. If a symbol is missing and you need it. Add it yourself and **SHARE**! or create an issue for a feature request, and pray that I have time to implement it.
 
-![example](https://raw.githubusercontent.com/peer23peer/PIDcircuitTikZ/master/example.png)
+![example](example.jpg?raw=true)
 
 Implementation of the following norms:
 * 14617-1 General information and indexes
