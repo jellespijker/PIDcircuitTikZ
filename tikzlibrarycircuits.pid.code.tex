@@ -1,0 +1,179 @@
+% MIT License
+%
+% Copyright (c) 2018 Jelle Spijker
+%
+% Permission is hereby granted, free of charge, to any person obtaining a copy
+% of this software and associated documentation files (the "Software"), to deal
+% in the Software without restriction, including without limitation the rights
+% to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+% copies of the Software, and to permit persons to whom the Software is
+% furnished to do so, subject to the following conditions:
+%
+% The above copyright notice and this permission notice shall be included in all
+% copies or substantial portions of the Software.
+%
+% THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+% IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+% FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+% AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+% LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+% OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+% SOFTWARE.
+
+\usepackage[per-mode=fraction,
+ separate-uncertainty=true,
+ bracket-unit-denominator=false,
+ multi-part-units=single]{siunitx}
+
+\usetikzlibrary{circuits}
+\usepgflibrary{shapes.gates.pid}
+
+% Setting up an pid circuit
+\tikzset{
+ circuit pid/.style={
+   circuit,
+   every circuit pid/.try
+  }
+}
+
+% Symbols user-friendly aliases
+\tikzset{
+ pump/.style={2301={#1}},
+ compressor/.style={2302={#1}},
+ fan/.style={2302={#1}},
+ valve/.style={2101={#1}},
+ three way valve/.style={2103={#1}},
+ measurement point/.style={1011={#1}},
+ measurement device/.style={1041={#1}},
+ manual operation/.style={1021={#1}},
+ automatic operation/.style={1022={#1}},
+ turning actuator/.style={685={#1}},
+}
+
+% Annotations user-friendly aliases
+\tikzset{
+ displacement/.style={2321},
+ rotodynamic/.style={2322},
+ centrifugal/.style={2322},
+ non return/.style={2111},
+ central control room/.style={1101},
+ local control room/.style={1103},
+}
+
+% The default symbols (you need to load a sublib to install the actual rendering).
+\tikzset{
+ circuit declare symbol = 2301, % Liquid pump
+ circuit declare symbol = 2302, % Gas pump
+ circuit declare symbol = 2101, % Two-way valve
+ circuit declare symbol = 2103, % Three-way valve
+ circuit declare symbol = 1011, % measurement point
+ circuit declare symbol = 1041, % Information-processing function
+ circuit declare symbol = 1021, % Manual operation of a final controlling element
+ circuit declare symbol = 1022, % Automatic operation of a final controlling element
+ circuit declare symbol = 685, % Manual actuator operated by turning
+ circuit declare symbol = flow direction,
+ circuit declare symbol = flow direction',
+ circuit declare symbol = branch,
+ set flow direction graphic  = flow direction pid graphic,
+ set flow direction' graphic = flow direction' pid graphic,
+}
+
+% The default units
+\tikzset{
+ circuit declare unit={speed}{\si{\meter\per\second}},
+}
+
+% The direction and arrow settings
+\tikzset{
+ annotation arrow/.style = {
+   /utils/exec={\pgfsetarrowoptions{direction pid}{.4*\the\tikzcircuitssizeunit+.3*\the\pgflinewidth}},
+   >=direction pid
+  }
+}
+
+\tikzset{
+ % These styles should set the end-arrow.
+ %
+ % This arrow will generally be used to indicate flow directions in a circuit:
+ flow direction arrow/.style = {
+   /utils/exec={\pgfsetarrowoptions{direction pid}{1.3065*.5*\the\tikzcircuitssizeunit+1.3065*.3*\the\pgflinewidth}},
+   >=direction pid, direction pid arrow = direction pid,
+  }
+}
+
+\tikzset{
+flow direction pid graphic/.style = {
+  shape=direction pid,
+  circuit symbol filled,
+  flow direction arrow,
+  minimum width  = .5*\the\tikzcircuitssizeunit+.3*\the\pgflinewidth,
+  minimum height = .5*\the\tikzcircuitssizeunit+.3*\the\pgflinewidth,
+  transform shape
+ },
+flow direction' pid graphic/.style = {
+flow direction pid graphic,
+rotate=180
+}
+}
+
+% Process measure and control
+\tikzset{
+ measure/.style args={#1}{
+   append after command={%
+     \pgfextra
+     \node[scale=0.4, anchor=south, yshift=-2*\the\pgflinewidth] at (\tikzlastnode) {#1};
+     \tikz@after@path%
+     \endpgfextra
+    }
+  },
+ at/.style args={#1}{
+   above=0.25 of #1,
+   prefix after command={%
+     \pgfextra
+     \draw (\tikzlastnode) to (#1.center);
+     \tikz@after@path%
+     \endpgfextra
+    }
+  }
+}
+
+% Annotations
+\tikzset{
+ circuit declare annotation={2321}{0pt} % Positive-displacement type
+  {
+   (\tikzlastnode.north) edge[-,line width=0.5pt,line to] (\tikzlastnode.south)
+  },
+ circuit declare annotation={2322}{0pt} % Rotodynamic type
+  {
+   (\tikzlastnode.west) edge[-.,line width=0.5pt,line to] (\tikzlastnode.east)
+  },
+ circuit declare annotation={2111}{0pt} % Non-return function Flow from left to right possible
+  {
+   ([xshift=-1.5pt,yshift=-1pt]\tikzlastnode.north west) edge[-.,line width=1.5pt,to path={arc (-360:0:0.75pt)}] ()
+  },
+ circuit declare annotation={1101}{0pt} % Primary location in a central control room
+  {
+   (\tikzlastnode.east) edge[-,line width=0.5pt,line to] (\tikzlastnode.west)
+  },
+ circuit declare annotation={1103}{0pt} % Primary location in a local control room
+  {
+   ([xshift=-\the\pgflinewidth]\tikzlastnode.east) edge[double, -,line width=0.5pt,line to] ([xshift=\the\pgflinewidth]\tikzlastnode.west)
+  },
+ circuit declare annotation={adjustable}{1.5\tikzcircuitssizeunit}
+  {
+   [shift=(\tikzlastnode.center)]
+   (-1.5\tikzcircuitssizeunit,-1.5\tikzcircuitssizeunit) edge[line to] (1.5\tikzcircuitssizeunit,1.5\tikzcircuitssizeunit)
+  },
+ circuit declare annotation={adjustable'}{1.5\tikzcircuitssizeunit}
+  {
+   [shift=(\tikzlastnode.center)]
+   (-1.5\tikzcircuitssizeunit,1.5\tikzcircuitssizeunit) edge[line to] (1.5\tikzcircuitssizeunit,-1.5\tikzcircuitssizeunit)
+  },
+}
+
+% Helper command to get the current coordinates in a path
+\makeatletter
+\newcommand\currentcoordinate{\the\tikz@lastxsaved,\the\tikz@lastysaved}
+\makeatother
+
+\endinput

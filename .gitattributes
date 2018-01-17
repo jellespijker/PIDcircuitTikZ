@@ -1,0 +1,41 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Custom for Visual Studio
+*.cs     diff=csharp
+
+# Standard to msysgit
+*.doc	 diff=astextplain
+*.DOC	 diff=astextplain
+*.docx diff=astextplain
+*.DOCX diff=astextplain
+*.dot  diff=astextplain
+*.DOT  diff=astextplain
+*.pdf  diff=astextplain
+*.PDF	 diff=astextplain
+*.rtf	 diff=astextplain
+*.RTF	 diff=astextplain
+
+#Matlab
+*.mat -crlf -diff -merge
+*.p -crlf -diff -merge
+*.slx -crlf -diff -merge
+*.mdl -crlf -diff -merge
+*.mdlp -crlf -diff -merge
+*.slxp -crlf -diff -merge
+*.sldd -crlf -diff -merge
+*.mexa64 -crlf -diff -merge
+*.mexw32 -crlf -diff -merge
+*.mexw64 -crlf -diff -merge
+*.mexmaci64 -crlf -diff -merge
+*.xlsx -crlf -diff -merge
+*.docx -crlf -diff -merge
+*.pdf -crlf -diff -merge
+*.jpg -crlf -diff -merge
+*.png -crlf -diff -merge
+
+#tmsu
+signons.sqlite diff=sqlite3 merge=sqlite3
+
+#Latex
+*.tikz gitlab-language=latex

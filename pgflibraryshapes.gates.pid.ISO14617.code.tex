@@ -1,0 +1,117 @@
+% MIT License
+%
+% Copyright (c) 2018 Jelle Spijker
+%
+% Permission is hereby granted, free of charge, to any person obtaining a copy
+% of this software and associated documentation files (the "Software"), to deal
+% in the Software without restriction, including without limitation the rights
+% to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+% copies of the Software, and to permit persons to whom the Software is
+% furnished to do so, subject to the following conditions:
+%
+% The above copyright notice and this permission notice shall be included in all
+% copies or substantial portions of the Software.
+%
+% THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+% IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+% FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+% AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+% LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+% OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+% SOFTWARE.
+
+\pgfdeclareshape{generic circle ISO14617}
+{
+ % This shape is a generic circle, to which you can add something to
+ % the before background path using the key
+ % /pgf/generic circle ISO14617/before background
+ % When this key is invoked, the transformation matrix will have been
+ % setup such that the circle's center is at the origin and that the
+ % position \pgfpoint{1pt}{0pt} lies exactly on the top of the circle
+ % (and, there, on the middle of the line).
+ \inheritsavedanchors[from=circle pid]
+ \inheritanchorborder[from=circle pid]
+ \inheritanchor[from=circle pid]{north}
+ \inheritanchor[from=circle pid]{north west}
+ \inheritanchor[from=circle pid]{north east}
+ \inheritanchor[from=circle pid]{center}
+ \inheritanchor[from=circle pid]{west}
+ \inheritanchor[from=circle pid]{east}
+ \inheritanchor[from=circle pid]{south}
+ \inheritanchor[from=circle pid]{south west}
+ \inheritanchor[from=circle pid]{south east}
+ \inheritanchor[from=circle pid]{input}
+ \inheritanchor[from=circle pid]{output}
+ \inheritbackgroundpath[from=circle pid]
+
+ \beforebackgroundpath{
+  {
+    \centerpoint%
+    \pgf@xc=\pgf@x%
+    \pgf@yc=\pgf@y%
+    \pgftransformshift{}
+    \pgfutil@tempdima=\radius%
+    \pgfmathsetlength{\pgf@xb}{\pgfkeysvalueof{/pgf/outer xsep}}%
+    \pgfmathsetlength{\pgf@yb}{\pgfkeysvalueof{/pgf/outer ysep}}%
+    \ifdim\pgf@xb<\pgf@yb%
+     \advance\pgfutil@tempdima by-\pgf@yb%
+    \else%
+     \advance\pgfutil@tempdima by-\pgf@xb%
+    \fi%
+    \pgftransformscale{\pgf@sys@tonumber{\pgfutil@tempdima}}
+    \pgfkeysvalueof{/pgf/generic circle ISO14617/before background}
+   }
+ }
+}
+
+% Generic rectangle, based on a rectangle pid
+\pgfdeclareshape{generic rectangle ISO14617}
+{
+ % This shape is a generic rectangle, to which you can add something to
+ % the before background path using the key
+ % /pgf/generic tank ISO14617/before background
+ % When this key is invoked, the transformation matrix will have been
+ % setup such that the center is at the tip of the diode. The
+ % position \pgfpoint{1pt}{0pt} lies exactly on the top of the
+ % (suggested) line before the diode.
+ \inheritsavedanchors[from=rectangle pid]
+ \inheritanchor[from=rectangle pid]{center}
+ \inheritanchor[from=rectangle pid]{north}
+ \inheritanchor[from=rectangle pid]{south}
+ \inheritanchor[from=rectangle pid]{east}
+ \inheritanchor[from=rectangle pid]{west}
+ \inheritanchor[from=rectangle pid]{north east}
+ \inheritanchor[from=rectangle pid]{north west}
+ \inheritanchor[from=rectangle pid]{south east}
+ \inheritanchor[from=rectangle pid]{south west}
+ \inheritanchor[from=rectangle pid]{input}
+ \inheritanchor[from=rectangle pid]{output}
+ \inheritanchorborder[from=rectangle pid]
+ \inheritbackgroundpath[from=rectangle]
+
+ \beforebackgroundpath{
+  {
+    \pgf@process{\pgfpointadd{\southwest}{\pgfpoint{\pgfkeysvalueof{/pgf/outer xsep}}{\pgfkeysvalueof{/pgf/outer ysep}}}}
+    \pgf@xa=\pgf@x \pgf@ya=\pgf@y
+    \pgf@process{\pgfpointadd{\northeast}{\pgfpointscale{-1}{\pgfpoint{\pgfkeysvalueof{/pgf/outer xsep}}{\pgfkeysvalueof{/pgf/outer ysep}}}}}
+    \pgf@xb=\pgf@x \pgf@yb=\pgf@y
+    \pgf@yc=.5\pgf@ya
+    \advance\pgf@yc by.5\pgf@yb
+    \pgfpathmoveto{\pgfqpoint{\pgf@xa}{\pgf@yc}}
+    \pgfpathlineto{\pgfqpoint{\pgf@xb}{\pgf@yc}}
+    \pgfusepathqstroke
+    \pgftransformshift{\pgfqpoint{\pgf@xb}{\pgf@yc}}
+    \pgf@yc=.5\pgf@yb
+    \advance\pgf@yc by-.5\pgf@ya
+    \pgftransformscale{\pgf@sys@tonumber{\pgf@yc}}
+    \pgfkeysvalueof{/pgf/generic tank ISO14617/before background}
+   }
+ }
+}
+
+\pgfkeys{
+ /pgf/generic circle ISO14617/before background/.initial=,
+ /pgf/generic rectangle ISO14617/before background/.initial=,
+}
+
+\endinput
