@@ -39,6 +39,7 @@
    set 1021 graphic = 1021 ISO14617 graphic,
    set 1022 graphic = 1022 ISO14617 graphic,
    set 685 graphic = 685 ISO14617 graphic,
+   set 301 graphic = 301 ISO14617 graphic,
    set branch graphic = branch ISO14617 graphic,
   }
 }
@@ -182,6 +183,15 @@
      \pgfpathlineto{\pgfpoint{1pt}{-1.5pt}}
      \pgfusepathqstroke
     },
+   transform shape,
+  }
+}
+
+% Envelope (tank)
+\tikzset{301 ISO14617 graphic/.style={
+   circuit symbol lines,
+   circuit symbol size = width 2.5 height 2.5,
+   shape=generic rectangle ISO14617,
    transform shape,
   }
 }
