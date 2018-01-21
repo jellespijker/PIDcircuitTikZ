@@ -56,12 +56,13 @@ preset=\centering, pos=b
    circuit pid ISO14617,
    every info/.style={font=\tiny}]
 
-  \node[tank={name=TANK1,with={heating coil}{0pt}{0pt}}] at (7,0) {};
   \draw (0,0) to [pump={displacement,name=P1,info=$P_1$}] (2,0)
   to [branch={name=T1}] (2.5,0)
   to [flow direction={speed=3}] (3,0)
   to [valve={name=V1,info'=$V_{1}$}](4,0)
-  to [three way valve={name=V2,info=below right:$V_2$}] (TANK1);
+  to [three way valve={name=V2,info=below right:$V_2$}] ++(1,0)
+  to [tank={name=B1,with={heating coil}{0pt}{0pt}}] ++(1,0)
+  to [tank={filter element, name=F1}] ++ (1,0);
   \draw (V2.south) to [pump={name=P2,info=$P_2$}] ++(0,-2)
   to [measurement point={name=M1}] ++(-2,0)
   to (\currentcoordinate -| T1)
@@ -69,11 +70,10 @@ preset=\centering, pos=b
   \node[measurement device=local control room, at=M1, measure=P]{};
   \node[turning actuator, at=V1]{};
   \node[automatic operation, at=V2]{};
-  \draw (TANK1-heating coil.south) to ++(0,-0.5)
+  \draw (B1-heating coil.south) to ++(0,-0.5)
   to [valve, tiny circuit symbols] ++(1, 0);
-  \draw (TANK1-heating coil.north) to ++(0,0.5)
+  \draw (B1-heating coil.north) to ++(0,0.5)
   to ++(1,0);
-  \draw (TANK1) to ++(1,0);
 
 
  \end{tikzpicture}
