@@ -54,7 +54,8 @@ preset=\centering, pos=b
 
  \begin{tikzpicture}[
    circuit pid ISO14617,
-   every info/.style={font=\tiny}]
+   every info/.style={font=\tiny},
+   tiny circuit symbols]
 
   \draw (0,0) to [pump={displacement,name=P1,info=$P_1$}] (2,0)
   to [branch={name=T1}] (2.5,0)
@@ -72,7 +73,7 @@ preset=\centering, pos=b
   \node[automatic operation, at=V2]{};
   \node[boiler={name=B2, with={fired type}{0}{-0.25}}] at (7,-1){};
   \draw (B1-heating coil.south) to ++(0,-0.5)
-  to [valve, tiny circuit symbols] ++(1, 0);
+  to [valve, tiny circuit symbols] (B2.input);
   \draw (B1-heating coil.north) to ++(0,0.5)
   to ++(1,0);
   \draw (F1-spray nozzle.north) to ++(0,0.15)
