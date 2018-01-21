@@ -60,6 +60,8 @@
  non return/.style={2111},
  central control room/.style={1101},
  local control room/.style={1103},
+ heating coil/.style={2501},
+ cooling coil/.style={2501},
 }
 
 % The default symbols (you need to load a sublib to install the actual rendering).
@@ -74,6 +76,7 @@
  circuit declare symbol = 1022, % Automatic operation of a final controlling element
  circuit declare symbol = 685, % Manual actuator operated by turning
  circuit declare symbol = 301, % Envelope (tank)
+ circuit declare symbol = 2501, % Heating or cooling coil
  circuit declare symbol = flow direction,
  circuit declare symbol = flow direction',
  circuit declare symbol = branch,
@@ -134,6 +137,14 @@ rotate=180
    prefix after command={%
      \pgfextra
      \draw (\tikzlastnode) to (#1.center);
+     \tikz@after@path%
+     \endpgfextra
+    }
+  },
+ with/.style args={#1#2#3}{
+   append after command={%
+     \pgfextra
+     \node[#1] at ([xshift=#2*\tikzcircuitssizeunit,yshift=#3*\tikzcircuitssizeunit]\tikzlastnode) (\tikzlastnode-#1) {};
      \tikz@after@path%
      \endpgfextra
     }

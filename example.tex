@@ -31,10 +31,10 @@
 
 \lstdefinestyle{circuitpid}{moretexcs={draw, node, usetikzlibrary},
 backgroundcolor=\color{white}, basicstyle=\footnotesize, breakatwhitespace=false,
-breaklines=true, captionpos=b, commentstyle=\color{mygreen}, escapeinside={\%*}{*)},
+breaklines=true, captionpos=b, commentstyle=\color{green}, escapeinside={\%*}{*)},
 extendedchars=true, keepspaces=true, keywordstyle=\color{blue}, language=[LaTeX]Tex,
-numbers=left, numbersep=1pt, numberstyle=\tiny\color{mygray}, showspaces=false,
-showstringspaces=false, showtabs=false, tringstyle=\color{mymauve}, tabsize=2,
+numbers=left, numbersep=1pt, numberstyle=\tiny\color{gray}, showspaces=false,
+showstringspaces=false, showtabs=false, stringstyle=\color{mauve}, tabsize=2,
 preset=\centering, pos=b
 }
 
@@ -56,11 +56,12 @@ preset=\centering, pos=b
    circuit pid ISO14617,
    every info/.style={font=\tiny}]
 
+  \node[tank={name=TANK1,with={heating coil}{0pt}{0pt}}] at (7,0) {};
   \draw (0,0) to [pump={displacement,name=P1,info=$P_1$}] (2,0)
   to [branch={name=T1}] (2.5,0)
   to [flow direction={speed=3}] (3,0)
   to [valve={name=V1,info'=$V_{1}$}](4,0)
-  to [three way valve={name=V2,info=below right:$V_2$}] (6,0);
+  to [three way valve={name=V2,info=below right:$V_2$}] (TANK1);
   \draw (V2.south) to [pump={name=P2,info=$P_2$}] ++(0,-2)
   to [measurement point={name=M1}] ++(-2,0)
   to (\currentcoordinate -| T1)
@@ -68,6 +69,12 @@ preset=\centering, pos=b
   \node[measurement device=local control room, at=M1, measure=P]{};
   \node[turning actuator, at=V1]{};
   \node[automatic operation, at=V2]{};
+  \draw (TANK1-heating coil.south) to ++(0,-0.5)
+  to [valve, tiny circuit symbols] ++(1, 0);
+  \draw (TANK1-heating coil.north) to ++(0,0.5)
+  to ++(1,0);
+  \draw (TANK1) to ++(1,0);
+
 
  \end{tikzpicture}
 \end{LTXexample}
