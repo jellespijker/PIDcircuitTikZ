@@ -50,10 +50,6 @@
  turning actuator/.style={685={#1}},
  envelope/.style={301={#1}},
  tank/.style={301={#1}},
- heating coil/.style={2501={#1}},
- cooling coil/.style={2501={#1}},
- screen element/.style={2602},
- filter element/.style={2602},
 }
 
 % Annotations user-friendly aliases
@@ -64,6 +60,12 @@
  non return/.style={2111},
  central control room/.style={1101},
  local control room/.style={1103},
+ heating coil/.style={2501},
+ cooling coil/.style={2501},
+ screen element/.style={2602},
+ filter element/.style={2602},
+ spray nozzle/.style={2037},
+ fired type/.style={2541},
 }
 
 % The default symbols (you need to load a sublib to install the actual rendering).
@@ -80,6 +82,8 @@
  circuit declare symbol = 301, % Envelope (tank)
  circuit declare symbol = 2501, % Heating or cooling coil
  circuit declare symbol = 2602, % Screen or filter element
+ circuit declare symbol = 2037, % Spray nozzle
+ circuit declare symbol = 2541, % Fired type
  circuit declare symbol = flow direction,
  circuit declare symbol = flow direction',
  circuit declare symbol = branch,
