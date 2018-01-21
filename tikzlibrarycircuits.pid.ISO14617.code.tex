@@ -41,6 +41,7 @@
    set 685 graphic = 685 ISO14617 graphic,
    set 301 graphic = 301 ISO14617 graphic,
    set 2501 graphic = 2501 ISO14617 graphic,
+   set 2602 graphic = 2602 ISO14617 graphic,
    set branch graphic = branch ISO14617 graphic,
   }
 }
@@ -208,6 +209,42 @@
      \pgfpathlineto{\pgfpoint{1pt}{0pt}}
      \pgfpathlineto{\pgfpoint{-1pt}{0pt}}
      \pgfpathlineto{\pgfpoint{0pt}{-1pt}}
+     \pgfusepathqstroke
+    },
+   transform shape,
+  }
+}
+
+% Heating or cooling coil
+\tikzset{2501 ISO14617 graphic/.style={
+   circuit symbol lines,
+   circuit symbol size = width 1.25 height 1.25,
+   shape=generic circle ISO14617,
+   draw=none,
+   /pgf/generic circle ISO14617/before background={
+     \pgfpathmoveto{\pgfpoint{0pt}{1pt}}
+     \pgfpathlineto{\pgfpoint{1pt}{0pt}}
+     \pgfpathlineto{\pgfpoint{-1pt}{0pt}}
+     \pgfpathlineto{\pgfpoint{0pt}{-1pt}}
+     \pgfusepathqstroke
+    },
+   transform shape,
+  }
+}
+
+% Screen or filter element
+\tikzset{2602 ISO14617 graphic/.style={
+   circuit symbol lines,
+   circuit symbol size = width 1.25 height 1.25,
+   shape=generic circle ISO14617,
+   draw=none,
+   /pgf/generic circle ISO14617/before background={
+     \pgfpathmoveto{\pgfpoint{-2pt}{0pt}}
+     \pgfpathlineto{\pgfpoint{-1.15pt}{0pt}}
+     \pgfpathmoveto{\pgfpoint{-0.65pt}{0pt}}
+     \pgfpathlineto{\pgfpoint{0.65pt}{0pt}}
+     \pgfpathmoveto{\pgfpoint{1.15pt}{0pt}}
+     \pgfpathlineto{\pgfpoint{2pt}{0pt}}
      \pgfusepathqstroke
     },
    transform shape,

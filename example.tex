@@ -62,7 +62,7 @@ preset=\centering, pos=b
   to [valve={name=V1,info'=$V_{1}$}](4,0)
   to [three way valve={name=V2,info=below right:$V_2$}] ++(1,0)
   to [tank={name=B1,with={heating coil}{0pt}{0pt}}] ++(1,0)
-  to [tank={filter element, name=F1}] ++ (1,0);
+  to [tank={name=F1, with={filter element}{0}{-0.5}}] ++ (1,0);
   \draw (V2.south) to [pump={name=P2,info=$P_2$}] ++(0,-2)
   to [measurement point={name=M1}] ++(-2,0)
   to (\currentcoordinate -| T1)

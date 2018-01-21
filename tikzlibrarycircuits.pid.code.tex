@@ -52,6 +52,8 @@
  tank/.style={301={#1}},
  heating coil/.style={2501={#1}},
  cooling coil/.style={2501={#1}},
+ screen element/.style={2602},
+ filter element/.style={2602},
 }
 
 % Annotations user-friendly aliases
@@ -62,8 +64,6 @@
  non return/.style={2111},
  central control room/.style={1101},
  local control room/.style={1103},
- screen element/.style={2602},
- filter element/.style={2602}
 }
 
 % The default symbols (you need to load a sublib to install the actual rendering).
@@ -79,6 +79,7 @@
  circuit declare symbol = 685, % Manual actuator operated by turning
  circuit declare symbol = 301, % Envelope (tank)
  circuit declare symbol = 2501, % Heating or cooling coil
+ circuit declare symbol = 2602, % Screen or filter element
  circuit declare symbol = flow direction,
  circuit declare symbol = flow direction',
  circuit declare symbol = branch,
@@ -174,10 +175,6 @@ rotate=180
  circuit declare annotation={1103}{0pt} % Primary location in a local control room
   {
    ([xshift=-\the\pgflinewidth]\tikzlastnode.east) edge[double, -,line width=0.5pt,line to] ([xshift=\the\pgflinewidth]\tikzlastnode.west)
-  },
- circuit declare annotation={2602}{0pt} % Screen or filter element
-  {
-   (\tikzlastnode.east) edge[dash pattern=on 3pt off 2pt, -,line width=0.5pt,line to] (\tikzlastnode.west)
   },
  circuit declare annotation={adjustable}{1.5\tikzcircuitssizeunit}
   {
