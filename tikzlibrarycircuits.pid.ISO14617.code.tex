@@ -44,6 +44,7 @@
    set 2602 graphic = 2602 ISO14617 graphic,
    set 2037 graphic = 2037 ISO14617 graphic,
    set 2541 graphic = 2541 ISO14617 graphic,
+   set 2531 graphic = 2531 ISO14617 graphic,
    set branch graphic = branch ISO14617 graphic,
   }
 }
@@ -287,6 +288,28 @@
      \pgfpathlineto{\pgfpoint{0.55pt}{-1pt}}
      \pgfpathmoveto{\pgfpoint{-1.5pt}{-1pt}}
      \pgfpathlineto{\pgfpoint{1.5pt}{-1pt}}
+     \pgfusepathqstroke
+    },
+   transform shape,
+  }
+}
+
+
+% Boiler, steam generator
+\tikzset{2531 ISO14617 graphic/.style={
+   circuit symbol lines,
+   circuit symbol size = width 2.5 height 2.5,
+   shape=generic circle ISO14617,
+   draw=none,
+   /pgf/generic circle ISO14617/before background={
+     \pgfpathmoveto{\pgfpoint{-1pt}{1pt}}
+     \pgfpathlineto{\pgfpoint{1pt}{1pt}}
+     \pgfpathlineto{\pgfpoint{1pt}{-1pt}}
+     \pgfpathlineto{\pgfpoint{-1pt}{-1pt}}
+     \pgfpathclose
+     \pgfusepathqstroke
+     \pgfpathmoveto{\pgfpoint{-1pt}{0.75pt}}
+     \pgfpathlineto{\pgfpoint{1pt}{0.75pt}}
      \pgfusepathqstroke
     },
    transform shape,

@@ -87,11 +87,23 @@
  \inheritanchor[from=rectangle pid]{input}
  \inheritanchor[from=rectangle pid]{output}
  \inheritanchorborder[from=rectangle pid]
- \inheritbackgroundpath[from=rectangle]
 
+ \inheritbackgroundpath[from=rectangle pid]
+
+ % TODO figure out what is happening here, probably more code then is strictly necessary
  \beforebackgroundpath{
   {
-    \pgfkeysvalueof{/pgf/generic tank ISO14617/before background}
+    \pgf@process{\pgfpointadd{\southwest}{\pgfpoint{\pgfkeysvalueof{/pgf/outer xsep}}{\pgfkeysvalueof{/pgf/outer ysep}}}}
+    \pgf@xa=\pgf@x \pgf@ya=\pgf@y
+    \pgf@process{\pgfpointadd{\northeast}{\pgfpointscale{-1}{\pgfpoint{\pgfkeysvalueof{/pgf/outer xsep}}{\pgfkeysvalueof{/pgf/outer ysep}}}}}
+    \pgf@xb=\pgf@x \pgf@yb=\pgf@y
+    \pgf@yc=.5\pgf@ya
+    \advance\pgf@yc by.5\pgf@yb
+    \pgftransformshift{\pgfqpoint{\pgf@xb}{\pgf@yc}}
+    \pgf@yc=.5\pgf@yb
+    \advance\pgf@yc by-.5\pgf@ya
+    \pgftransformscale{\pgf@sys@tonumber{\pgf@yc}}
+    \pgfkeysvalueof{/pgf/generic rectangle pid/before background}
    }
  }
 }
