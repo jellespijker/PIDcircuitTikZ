@@ -299,7 +299,8 @@
 % Boiler, steam generator
 \tikzset{2531 ISO14617 graphic/.style={
    circuit symbol lines,
-   circuit symbol size = width 2.5 height 2.5,
+   circuit symbol size = width 2.5 height 0.5,
+   draw=none,
    shape=generic rectangle ISO14617,
    /pgf/generic rectangle ISO14617/before background={
     \pgf@process{\southwest}
@@ -308,8 +309,8 @@
     \pgf@process{\northeast}
     \pgf@xb=\pgf@x
     \pgf@yb=\pgf@y
-    \pgfpathmoveto{\pgfqpoint{\pgf@xa}{0.5\pgf@yb}}
-    \pgfpathlineto{\pgfqpoint{\pgf@xb}{0.5\pgf@yb}}
+    \pgfpathmoveto{\pgfqpoint{\pgf@xa}{\pgf@ya}}
+    \pgfpathlineto{\pgfqpoint{\pgf@xb}{\pgf@ya}}
     \pgfusepathqstroke
     },
    transform shape,
