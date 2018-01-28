@@ -49,6 +49,7 @@
    set 2541 graphic = 2541 ISO14617 graphic,
    set 2531 graphic = 2531 ISO14617 graphic,
    set 2551 graphic = 2551 ISO14617 graphic,
+   set 2062 graphic = 2062 ISO14617 graphic,
    set 2002 graphic = 2002 ISO14617 graphic,
    set branch graphic = branch ISO14617 graphic,
   }
@@ -408,6 +409,30 @@
      \pgfusepath{draw}
      \pgfpathmoveto{\pgfpoint{-0.3pt}{0.5pt}}
      \pgfpathlineto{\pgfpoint{0pt}{0.5pt}}
+     \pgfusepath{draw}
+    },
+   transform shape,
+  }
+}
+
+% Pressure or vacuum vessel
+\tikzset{2062 ISO14617 graphic/.style={
+   circuit symbol lines,
+   circuit symbol size = width 2.5 height 2.5,
+   shape=generic rectangle ISO14617,
+   draw=none,
+   /pgf/generic rectangle ISO14617/before background={
+     \pgfpathmoveto{\pgfpoint{-1pt}{1pt}}
+     \pgfpatharc{90}{270}{0.5pt and 1pt}
+     \pgfusepath{draw}
+     \pgfpathmoveto{\pgfpoint{1pt}{1pt}}
+     \pgfpatharc{270}{90}{-0.5pt and -1pt}
+     \pgfusepath{draw}
+     \pgfpathmoveto{\pgfpoint{-1pt}{1pt}}
+     \pgfpathlineto{\pgfpoint{1pt}{1pt}}
+     \pgfusepath{draw}
+     \pgfpathmoveto{\pgfpoint{-1pt}{-1pt}}
+     \pgfpathlineto{\pgfpoint{1pt}{-1pt}}
      \pgfusepath{draw}
     },
    transform shape,

@@ -59,6 +59,8 @@
  heat pump/.style={2551={#1}},
  refrigerator/.style={2551={#1}},
  freezer/.style={2551={#1}},
+ pressure vessel/.style={2062={#1}},
+ vacuum vessel/.style={2062={#1}},
 }
 
 % Annotations user-friendly aliases
@@ -104,6 +106,7 @@
  circuit declare symbol = 2541, % Fired type
  circuit declare symbol = 2531, % Boiler, steam generator
  circuit declare symbol = 2551, % Heat pump, refrigerator or freezer
+ circuit declare symbol = 2062, % Pressure or vacuum vessel
  circuit declare symbol = flow direction,
  circuit declare symbol = flow direction',
  circuit declare symbol = branch,
@@ -250,16 +253,6 @@ with/.style args={#1#2#3}{
 \makeatletter
 % Helper command to get the current coordinates in a path
 \newcommand\currentcoordinate{\the\tikz@lastxsaved,\the\tikz@lastysaved}
-
-% Helper command for accurate placement using at
-\def\atnodecmd{%
-\@ifnextchar[%
-\atnodecmd@%
-{\atnodecmd@[]}%
-}
-\def\atnodecmd@[#1]#2\pgfeov{%
- Argument=#2, Option=#1.%
-}
 \makeatother
 
 \endinput
