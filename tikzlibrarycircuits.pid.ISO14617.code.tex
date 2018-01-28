@@ -118,19 +118,24 @@
 \tikzset{2103 ISO14617 graphic/.style={
    circuit symbol lines,
    circuit symbol size = width 2.5 height 2.5,
-   shape=generic circle ISO14617,
+   shape=generic rectangle ISO14617,
    draw=none,
-   /pgf/generic circle ISO14617/before background={
-     \pgfpathmoveto{\pgfpoint{-1pt}{-0.6pt}}
-     \pgfpathlineto{\pgfpoint{1pt}{0.6pt}}
-     \pgfpathlineto{\pgfpoint{1pt}{-0.6pt}}
-     \pgfpathlineto{\pgfpoint{-1pt}{0.6pt}}
-     \pgfpathlineto{\pgfpoint{-1pt}{-0.6pt}}
-     \pgfpathmoveto{\pgfpoint{0pt}{0pt}}
-     \pgfpathlineto{\pgfpoint{-0.6pt}{-1pt}}
-     \pgfpathlineto{\pgfpoint{0.6pt}{-1pt}}
+   /pgf/generic rectangle ISO14617/before background={
+     \pgfpathmoveto{\pgfpoint{-1pt}{0.6pt}}
      \pgfpathlineto{\pgfpoint{0pt}{0pt}}
-     \pgfusepathqstroke
+     \pgfpathlineto{\pgfpoint{-1pt}{-0.6pt}}
+     \pgfpathclose
+     \pgfusepath{draw}
+     \pgfpathmoveto{\pgfpoint{1pt}{0.6pt}}
+     \pgfpathlineto{\pgfpoint{0pt}{0pt}}
+     \pgfpathlineto{\pgfpoint{1pt}{-0.6pt}}
+     \pgfpathclose
+     \pgfusepath{draw}
+     \pgfpathmoveto{\pgfpoint{-0.6pt}{-1pt}}
+     \pgfpathlineto{\pgfpoint{0pt}{0pt}}
+     \pgfpathlineto{\pgfpoint{0.6pt}{-1pt}}
+     \pgfpathclose
+     \pgfusepath{draw}
     },
    transform shape,
   }
