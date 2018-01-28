@@ -48,6 +48,7 @@
    set 2541 graphic = 2541 ISO14617 graphic,
    set 2531 graphic = 2531 ISO14617 graphic,
    set 2551 graphic = 2551 ISO14617 graphic,
+   set 2002 graphic = 2002 ISO14617 graphic,
    set branch graphic = branch ISO14617 graphic,
   }
 }
@@ -97,18 +98,18 @@
 % Two-way valve
 \tikzset{2101 ISO14617 graphic/.style={
    circuit symbol lines,
-   circuit symbol size = width 2.5 height 1.5,
+   circuit symbol size = width 2.5 height 2.5,
    shape=generic rectangle ISO14617,
    draw=none,
    /pgf/generic rectangle ISO14617/before background={
-     \pgfpathmoveto{\pgfpoint{-1pt}{1pt}}
+     \pgfpathmoveto{\pgfpoint{-1pt}{0.6pt}}
      \pgfpathlineto{\pgfpoint{0pt}{0pt}}
-     \pgfpathlineto{\pgfpoint{-1pt}{-1pt}}
+     \pgfpathlineto{\pgfpoint{-1pt}{-0.6pt}}
      \pgfpathclose
      \pgfusepath{draw}
-     \pgfpathmoveto{\pgfpoint{1pt}{1pt}}
+     \pgfpathmoveto{\pgfpoint{1pt}{0.6pt}}
      \pgfpathlineto{\pgfpoint{0pt}{0pt}}
-     \pgfpathlineto{\pgfpoint{1pt}{-1pt}}
+     \pgfpathlineto{\pgfpoint{1pt}{-0.6pt}}
      \pgfpathclose
      \pgfusepath{draw}
     },
@@ -387,6 +388,25 @@
      \pgfusepath{draw}
      \pgfpathmoveto{\pgfpoint{-0.3pt}{0.5pt}}
      \pgfpathlineto{\pgfpoint{0pt}{0.5pt}}
+     \pgfusepath{draw}
+    },
+   transform shape,
+  }
+}
+
+% Spring
+\tikzset{2002 ISO14617 graphic/.style={
+   circuit symbol lines,
+   circuit symbol size = width 0.5 height 1.5,
+   shape=generic rectangle ISO14617,
+   draw=none,
+   /pgf/generic rectangle ISO14617/before background={
+     \pgfpathmoveto{\pgfpoint{0pt}{1pt}}
+     \pgfpathlineto{\pgfpoint{1pt}{0.7pt}}
+     \pgfpathlineto{\pgfpoint{-1pt}{0.35pt}}
+     \pgfpathlineto{\pgfpoint{1pt}{-0.35pt}}
+     \pgfpathlineto{\pgfpoint{-1pt}{-0.7pt}}
+     \pgfpathlineto{\pgfpoint{0pt}{-1pt}}
      \pgfusepath{draw}
     },
    transform shape,

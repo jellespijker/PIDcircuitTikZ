@@ -50,6 +50,7 @@
  manual operation/.style={1021={#1}},
  automatic operation/.style={1022={#1}},
  turning actuator/.style={685={#1}},
+ spring/.style={2002={#1}},
  envelope/.style={301={#1}},
  tank/.style={301={#1}},
  boiler/.style={2531={#1}},
@@ -93,6 +94,7 @@
  circuit declare symbol = 1021, % Manual operation of a final controlling element
  circuit declare symbol = 1022, % Automatic operation of a final controlling element
  circuit declare symbol = 685, % Manual actuator operated by turning
+ circuit declare symbol = 2002, % Spring
  circuit declare symbol = 301, % Envelope (tank)
  circuit declare symbol = 2501, % Heating or cooling coil
  circuit declare symbol = 2602, % Screen or filter element
@@ -149,31 +151,42 @@ rotate=180
 
 % Process measure and control
 \tikzset{
- measure/.style args={#1}{
-   append after command={%
-     \pgfextra
-     \node[scale=0.4, anchor=south, yshift=-2*\the\pgflinewidth] at (\tikzlastnode) {#1};
-     \tikz@after@path%
-     \endpgfextra
-    }
-  },
- at/.style args={#1}{
-   above=0.5\tikzcircuitssizeunit of #1,
-   append after command={%
-     \pgfextra
-     \draw (\tikzlastnode) to (#1.center);
-     \tikz@after@path%
-     \endpgfextra
-    }
-  },
- with/.style args={#1#2#3}{
-   append after command={%
-     \pgfextra
-     \node[#1] at ([xshift=#2*\tikzcircuitssizeunit,yshift=#3*\tikzcircuitssizeunit]\tikzlastnode) (\tikzlastnode-#1) {};
-     \tikz@after@path%
-     \endpgfextra
-    }
-  }
+measure/.style args={#1}{
+  append after command={%
+    \pgfextra
+    \node[scale=0.4, anchor=south, yshift=-2*\the\pgflinewidth] at (\tikzlastnode) {#1};
+    \tikz@after@path%
+    \endpgfextra
+   }
+ },
+at/.style args={#1#2}{
+  above=#2\tikzcircuitssizeunit of #1,
+  append after command={%
+    \pgfextra
+    \draw (\tikzlastnode) to (#1);
+    \tikz@after@path%
+    \endpgfextra
+   }
+ },
+%at/.default={}{center}{0.5}
+at'/.style args={#1#2#3}{
+below=#2\tikzcircuitssizeunit of #1,
+append after command={%
+  \pgfextra
+  \draw (\tikzlastnode) to (#1);
+  \tikz@after@path%
+  \endpgfextra
+ }
+},
+%at'/.default={}{center}{0.5}
+with/.style args={#1#2#3}{
+  append after command={%
+    \pgfextra
+    \node[#1] at ([xshift=#2*\tikzcircuitssizeunit,yshift=#3*\tikzcircuitssizeunit]\tikzlastnode) (\tikzlastnode-#1) {};
+    \tikz@after@path%
+    \endpgfextra
+   }
+ }
 }
 
 % Annotations
@@ -188,7 +201,7 @@ rotate=180
   },
  circuit declare annotation={2111}{0pt} % Non-return function Flow from left to right possible
   {
-   (\tikzlastnode.north west) edge[-,line width=1.5pt,to path={arc (-360:0:0.75pt)}] ()
+   ([yshift=-0.6\tikzcircuitssizeunit,xshift=0.2\tikzcircuitssizeunit]\tikzlastnode.north west) edge[-,line width=2pt,to path={arc (-360:0:1pt)}] ()
   },
  circuit declare annotation={1101}{0pt} % Primary location in a central control room
   {
@@ -223,8 +236,8 @@ rotate=180
   },
  circuit declare annotation={2112}{0pt} % Safety function
   {
-   [shift=(\tikzlastnode.north east),xshift=-0.3\tikzcircuitssizeunit]
-   (0,0) edge[-,line to] ([xshift=-0.3\tikzcircuitssizeunit]\tikzlastnode.south east)
+   [shift=(\tikzlastnode.north east),xshift=-0.3\tikzcircuitssizeunit, yshift=-0.3\tikzcircuitssizeunit]
+   (0,0) edge[-,line to] ([xshift=-0.3\tikzcircuitssizeunit, yshift=0.3\tikzcircuitssizeunit]\tikzlastnode.south east)
   },
  circuit declare annotation={2121}{0pt} % Globe type
   {
@@ -232,9 +245,19 @@ rotate=180
   },
 }
 
-% Helper command to get the current coordinates in a path
 \makeatletter
+% Helper command to get the current coordinates in a path
 \newcommand\currentcoordinate{\the\tikz@lastxsaved,\the\tikz@lastysaved}
+
+% Helper command for accurate placement using at
+\def\atnodecmd{%
+\@ifnextchar[%
+\atnodecmd@%
+{\atnodecmd@[]}%
+}
+\def\atnodecmd@[#1]#2\pgfeov{%
+ Argument=#2, Option=#1.%
+}
 \makeatother
 
 \endinput

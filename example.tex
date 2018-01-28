@@ -21,6 +21,10 @@
 % SOFTWARE.
 
 \documentclass[a4paper]{article}
+\usepackage[per-mode=fraction,
+ separate-uncertainty=true,
+ bracket-unit-denominator=false,
+ multi-part-units=single]{siunitx}
 \usepackage{xparse}
 \usepackage[most]{tcolorbox}
 \tcbuselibrary{minted, raster}
@@ -75,19 +79,19 @@ symbolinfo/.style 2 args={infosymb, title={Symbol: \thetcbcounter: #1},label={#2
   to [branch={name=T1}] (2.5,0)
   to [flow direction={speed=3}] (3,0)
   to [valve={name=V1,info'=$V_{1}$}](4,0)
-  to [three way valve={name=V2,info=below right:$V_2$}] ++(1,0)
+  to [three way valve={globe, name=V2,info=below right:$V_2$}] ++(1,0)
   to [tank={name=B1,with={heating coil}{0pt}{0pt}}] ++(1,0)
   to [tank={name=F1, with={filter element}{0}{-0.5}, with={spray nozzle}{0}{0.8}}] ++ (1,0);
   \draw (V2.south) to [pump={name=P2,info=$P_2$}] ++(0,-2)
   to [measurement point={name=M1}] ++(-2,0)
   to (\currentcoordinate -| T1)
   to [valve={non return,info=$V_3$}] (T1);
-  \node[measurement device=local control room, at=M1, measure=P]{};
-  \node[turning actuator, at=V1]{};
-  \node[automatic operation, at=V2]{};
-  \node[tank={name=B2, with={steam generator}{0}{1}, with={fired type}{0}{-0.25}}, below=of F1] {};
-  \draw (B1-heating coil.south) to  (B1-heating coil.north |- B2-steam generator.input)
-  to [valve, circuit symbol unit=3pt] (B2-steam generator.input);
+  \node[measurement device=local control room, at={M1.center}{1}, measure=P]{};
+  \node[turning actuator, at={V1.center}{1}]{};
+  \node[automatic operation, at={V2.center}{1}]{M};
+  \node[steam generator={with={fired type}{0}{-0.25},name=B2}, below=of F1] {};
+  \draw (B1-heating coil.south) to  (B1-heating coil.north |- B2.input)
+  to [valve, circuit symbol unit=3pt] (B2.input);
   \draw (B1-heating coil.north) to ++(0, 0.5)
   to ++(1,0);
   \draw (F1-spray nozzle.north) to ++(0,0.15)
@@ -127,7 +131,7 @@ No Symbols in norm
 \begin{symboltitled}{Manual actuator operated by turning - 685}\node [turning actuator] {};\end{symboltitled}
 \begin{symboltitled}{Manual actuated valve operated by turning - X685}
  \draw (0,0) to [valve={name=V1}] (2,0);
- \node [turning actuator, at=V1] {};
+ \node [turning actuator, at={V1.center}{1}] {};
 \end{symboltitled}
 
 \subsection{ISO 14617-5 Measurement and control devices}
@@ -140,11 +144,11 @@ None available at the moment, feel free to contribute!
 \begin{symboltitled}{Measurement device primary location in a local control room - 1101}\node [measurement device={local control room}] {};\end{symboltitled}
 \begin{symboltitled}{Pressure measurement}
  \draw (0,0) to[measurement point={name=M1}] (2,0);
- \node [measurement device, at=M1, measure=P] {};
+ \node [measurement device, at={M1.center}{}, measure=P] {};
 \end{symboltitled}
 \begin{symboltitled}{Temperature indication in central control room - X1075}
  \draw (0,0) to[measurement point={name=M1}] (2,0);
- \node [measurement device={central control room}, at=M1, measure=TI] {};
+ \node [measurement device={central control room}, at={M1.center}{1}, measure=TI] {};
 \end{symboltitled}
 
 \begin{extrainfo}{Letter symbols for data processing functions}
@@ -208,18 +212,24 @@ None available at the moment, feel free to contribute!
 \begin{symboltitled}{Two-way valve adjustable - 2101, 201}\draw (0,0) to [valve={adjustable}] (2,0);\end{symboltitled}
 \begin{symboltitled}{Two-way valve manual operation - 2101, 1021}
  \draw (0,0) to [valve={name=V1}] (2,0);
- \node [manual operation, at=V1]{};
+ \node [manual operation, at={V1.center}{1}]{};
 \end{symboltitled}
 \begin{symboltitled}{Two-way valve turning actuator - 2101, 1021}
  \draw (0,0) to [valve={name=V1}] (2,0);
- \node [turning actuator={at=V1}]{};
+ \node [turning actuator={at={V1.center}{1}}]{};
 \end{symboltitled}
 \begin{symboltitled}{Two-way valve automatic operation (electric motor type) - 2101, 685}
  \draw (0,0) to [valve={name=V1}] (2,0);
- \node [automatic operation, at=V1]{M};
+ \node [automatic operation, at={V1.center}{1}]{M};
 \end{symboltitled}
 \begin{symboltitled}{Angled two-way valve - 2102}
  \node [angled valve={name=V1}] {};
+ \draw (V1.east) to ++(0.5,0);
+ \draw (V1.south) to ++(0,-0.5);
+\end{symboltitled}
+\begin{symboltitled}{Angled two-way globe safety valve with spring return - 2102}
+ \node [angled valve={globe, safety function, name=V1}] {};
+ \node [spring={info=$ p > \SI{10}{\bar} $}, at={V1.center}{0.5}] {};
  \draw (V1.east) to ++(0.5,0);
  \draw (V1.south) to ++(0,-0.5);
 \end{symboltitled}
@@ -233,7 +243,7 @@ None available at the moment, feel free to contribute!
 \end{symboltitled}
 \begin{symboltitled}{Three-way valve automatic operation (electric motor type) - 2103, 685}
  \draw (0,0) to [three way valve={name=V1}] (2,0);
- \node [automatic operation, at=V1]{M};
+ \node [automatic operation, at={V1.center}{1}]{M};
  \draw (V1.south) to ++(0,-0.5);
 \end{symboltitled}
 \begin{symboltitled}{Four-way valve - 2104}
