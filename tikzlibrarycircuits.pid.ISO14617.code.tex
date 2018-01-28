@@ -45,6 +45,7 @@
    set 2037 graphic = 2037 ISO14617 graphic,
    set 2541 graphic = 2541 ISO14617 graphic,
    set 2531 graphic = 2531 ISO14617 graphic,
+   set 2551 graphic = 2551 ISO14617 graphic,
    set branch graphic = branch ISO14617 graphic,
   }
 }
@@ -294,8 +295,6 @@
   }
 }
 
-
-
 % Boiler, steam generator
 \tikzset{2531 ISO14617 graphic/.style={
    circuit symbol lines,
@@ -312,6 +311,30 @@
     \pgfpathmoveto{\pgfqpoint{\pgf@xa}{\pgf@ya}}
     \pgfpathlineto{\pgfqpoint{\pgf@xb}{\pgf@ya}}
     \pgfusepathqstroke
+    },
+   transform shape,
+  }
+}
+
+% Heat pump, refrigerator or freezer
+\tikzset{2551 ISO14617 graphic/.style={
+   circuit symbol lines,
+   circuit symbol size = width 2.5 height 2.5,
+   shape=generic circle ISO14617,
+   draw=none,
+   /pgf/generic circle ISO14617/before background={
+    \pgfpathmoveto{\pgfpoint{-1pt}{1pt}}
+    \pgfpathlineto{\pgfpoint{1pt}{1pt}}
+    \pgfpathlineto{\pgfpoint{1pt}{-1pt}}
+    \pgfpathlineto{\pgfpoint{-1pt}{-1pt}}
+    \pgfpathclose
+    \pgfusepathqstroke
+
+    \pgfpathellipse{\pgfqpoint{-0.15pt}{0.5pt}}{\pgfqpoint{0.05pt}{0.25pt}}{\pgfqpoint{0.15pt}{0.05pt}}
+    \pgfusepath{draw}
+    \pgfpathmoveto{\pgfpoint{-0.3pt}{0.5pt}}
+    \pgfpathlineto{\pgfpoint{0pt}{0.5pt}}
+    \pgfusepath{draw}
     },
    transform shape,
   }

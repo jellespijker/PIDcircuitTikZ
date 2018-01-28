@@ -52,6 +52,9 @@
  tank/.style={301={#1}},
  boiler/.style={2531={#1}},
  steam generator/.style={2531={#1}},
+ heat pump/.style={2551={#1}},
+ refrigerator/.style={2551={#1}},
+ freezer/.style={2551={#1}},
 }
 
 % Annotations user-friendly aliases
@@ -68,6 +71,9 @@
  filter element/.style={2602},
  spray nozzle/.style={2037},
  fired type/.style={2541},
+ quantity transition to higher/.style={130},
+ quantity transition to lower/.style={131},
+ quantity transition to higher and lower/.style={132},
 }
 
 % The default symbols (you need to load a sublib to install the actual rendering).
@@ -87,6 +93,7 @@
  circuit declare symbol = 2037, % Spray nozzle
  circuit declare symbol = 2541, % Fired type
  circuit declare symbol = 2531, % Boiler, steam generator
+ circuit declare symbol = 2551, % Heat pump, refrigerator or freezer
  circuit declare symbol = flow direction,
  circuit declare symbol = flow direction',
  circuit declare symbol = branch,
@@ -97,12 +104,14 @@
 % The default units
 \tikzset{
  circuit declare unit={speed}{\si{\meter\per\second}},
+ circuit declare unit={mass flow}{\si{\kilo\gram\per\second}},
+ circuit declare unit={volume flow}{\si{\cubic\meter\per\second}},
 }
 
 % The direction and arrow settings
 \tikzset{
  annotation arrow/.style = {
-   /utils/exec={\pgfsetarrowoptions{direction pid}{.4*\the\tikzcircuitssizeunit+.3*\the\pgflinewidth}},
+   /utils/exec={\pgfsetarrowoptions{direction pid}{.25*\the\tikzcircuitssizeunit+.2*\the\pgflinewidth}},
    >=direction pid
   }
 }
@@ -192,6 +201,21 @@ rotate=180
   {
    [shift=(\tikzlastnode.center)]
    (-1.5\tikzcircuitssizeunit,1.5\tikzcircuitssizeunit) edge[line to] (1.5\tikzcircuitssizeunit,-1.5\tikzcircuitssizeunit)
+  },
+ circuit declare annotation={130}{0pt} % Transition to a higher quantity level
+  {
+   [shift=(\tikzlastnode.center),xshift=0.3\tikzcircuitssizeunit, yshift=0.5\tikzcircuitssizeunit]
+   (0, -0.25\tikzcircuitssizeunit) edge[line to] (0,0.5\tikzcircuitssizeunit)
+  },
+ circuit declare annotation={131}{0pt} % Transition to a lower quantity level
+  {
+   [shift=(\tikzlastnode.center),xshift=0.3\tikzcircuitssizeunit, yshift=0.5\tikzcircuitssizeunit]
+   (0,0.5\tikzcircuitssizeunit) edge[line to] (0, -0.25\tikzcircuitssizeunit)
+  },
+ circuit declare annotation={132}{0pt} % Transition to a higher or lower quantity level
+  {
+   [shift=(\tikzlastnode.center),xshift=0.3\tikzcircuitssizeunit, yshift=0.5\tikzcircuitssizeunit]
+   (0,0.5\tikzcircuitssizeunit) edge[<->,line to] (0, -0.25\tikzcircuitssizeunit)
   },
 }
 

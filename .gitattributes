@@ -39,3 +39,5 @@ signons.sqlite diff=sqlite3 merge=sqlite3
 
 #Latex
 *.tikz gitlab-language=latex
+*.listing
+*.tcbtemp
