@@ -211,7 +211,7 @@ None available at the moment, feel free to contribute!
 \end{symboltitled}
 \begin{symboltitled}{Two-way valve turning actuator - 2101, 1021}
  \draw (0,0) to [valve={name=V1}] (2,0);
- \node [turning actuator, at=V1]{};
+ \node [turning actuator={at=V1}]{};
 \end{symboltitled}
 \begin{symboltitled}{Two-way valve automatic operation (electric motor type) - 2101, 685}
  \draw (0,0) to [valve={name=V1}] (2,0);
@@ -254,23 +254,21 @@ None available at the moment, feel free to contribute!
  \draw (CO1-cooling coil.north) to ++(0, 0.5);
  \draw (CO1-cooling coil.south) to ++(0, -0.5);
 \end{symboltitled}
-\begin{symboltitled}{Boiler - 301, 2531}\node [tank={with={boiler}{0}{1}}] {};\end{symboltitled}
+\begin{symboltitled}{Boiler - 301, 2531}\node [boiler] {};\end{symboltitled}
 \begin{symboltitled}{Fired type - 2541}\node [fired type] {};\end{symboltitled}
-\begin{symboltitled}{Boiler - 301, 2531}\node [tank={with={boiler}{0}{1}, with={fired type}{0}{-0.5}}] {};\end{symboltitled}
+\begin{symboltitled}{Boiler - 301, 2531}\node [boiler={with={fired type}{0}{-0.5}}] {};\end{symboltitled}
 \begin{symboltitled}{Boiler example - 301, 2531}
- \node[tank={with={boiler}{0}{1}, with={fired type}{0}{-0.25},name=B1}] {};
- \draw (B1-boiler.east) to ++(0.5,0)
- to ++(0,0.5);
- \draw (B1-boiler.west) to ++(-0.5,0)
- to ++(0,0.5);
+ \node[boiler={with={fired type}{0}{-0.25},name=B1}] {};
+ \draw (B1.output) to ++(0.5,0);
+ \draw (B1.input) to ++(-0.5,0);
  \draw (B1-fired type.south) to ++(0,-0.5)
  to ++(0.5,0);
 \end{symboltitled}
-\begin{symboltitled}{Steam generator - 301, 2531}\node [tank={with={steam generator}{0}{1}}] {};\end{symboltitled}
+\begin{symboltitled}{Steam generator - 301, 2531}\node [steam generator] {};\end{symboltitled}
 \begin{symboltitled}{Steam generator with heating coil - 301, 2531, 2501}
- \node [tank={with={steam generator}{0}{1}, with={heating coil}{0}{-0.25}, name=SG1}] {};
- \draw (SG1-steam generator.west) to ++(-0.5,0);
- \draw (SG1-steam generator.east) to ++(0.5,0);
+ \node [steam generator={with={heating coil}{0}{-0.25}, name=SG1}] {};
+ \draw (SG1.input) to ++(-0.5,0);
+ \draw (SG1.output) to ++(0.5,0);
  \draw (SG1-heating coil.north) to ++(0.75,0);
  \draw (SG1-heating coil.south) to ++(0.75,0);
 \end{symboltitled}
@@ -284,7 +282,13 @@ None available at the moment, feel free to contribute!
 \begin{symboltitled}{Spray nozzle - 2037}\node [spray nozzle] {};\end{symboltitled}
 \begin{symboltitled}{Screen element - 2602}\node [screen element] {};\end{symboltitled}
 \begin{symboltitled}{Filter - X2601 301, 2602}\node [tank={with={filter element}{0}{-0.25}}] {};\end{symboltitled}
-\begin{symboltitled}{Filter with spray - X2607 301, 2037, 2602}\node [tank={with={filter element}{0}{-0.5}, with={spray nozzle}{0}{0.5}}] {};\end{symboltitled}
+\begin{symboltitled}{Filter with spray - X2607 301, 2037, 2602}
+ \node [tank={with={filter element}{0}{-0.5}, with={spray nozzle}{0}{0.5}, name=WA1}] {};
+ \draw (WA1-spray nozzle.north) to ++(0,0.25)
+ to ++(0.5,0);
+ \draw (WA1.input) to ++(-0.5,0);
+ \draw (WA1.output) to ++(0.5,0);
+\end{symboltitled}
 \begin{symboltitled}{Filter element - 2602}\node [filter element] {};\end{symboltitled}
 
 \subsection{ISO 14617-13 Devices for material processing}

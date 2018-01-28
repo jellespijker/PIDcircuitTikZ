@@ -153,8 +153,8 @@ rotate=180
     }
   },
  at/.style args={#1}{
-   above=0.25 of #1,
-   prefix after command={%
+   above=0.5\tikzcircuitssizeunit of #1,
+   append after command={%
      \pgfextra
      \draw (\tikzlastnode) to (#1.center);
      \tikz@after@path%
@@ -183,7 +183,7 @@ rotate=180
   },
  circuit declare annotation={2111}{0pt} % Non-return function Flow from left to right possible
   {
-   ([xshift=-1.5pt,yshift=-1pt]\tikzlastnode.north west) edge[-.,line width=1.5pt,to path={arc (-360:0:0.75pt)}] ()
+   (\tikzlastnode.north west) edge[-,line width=1.5pt,to path={arc (-360:0:0.75pt)}] ()
   },
  circuit declare annotation={1101}{0pt} % Primary location in a central control room
   {
@@ -195,13 +195,11 @@ rotate=180
   },
  circuit declare annotation={adjustable}{1.5\tikzcircuitssizeunit}
   {
-   [shift=(\tikzlastnode.center)]
-   (-1.5\tikzcircuitssizeunit,-1.5\tikzcircuitssizeunit) edge[line to] (1.5\tikzcircuitssizeunit,1.5\tikzcircuitssizeunit)
+   ([xshift=-0.25\tikzcircuitssizeunit,yshift=-0.25\tikzcircuitssizeunit]\tikzlastnode.south west) edge[line to] ([xshift=0.25\tikzcircuitssizeunit, yshift=0.25\tikzcircuitssizeunit]\tikzlastnode.north east)
   },
  circuit declare annotation={adjustable'}{1.5\tikzcircuitssizeunit}
   {
-   [shift=(\tikzlastnode.center)]
-   (-1.5\tikzcircuitssizeunit,1.5\tikzcircuitssizeunit) edge[line to] (1.5\tikzcircuitssizeunit,-1.5\tikzcircuitssizeunit)
+   ([xshift=-0.25\tikzcircuitssizeunit,yshift=0.25\tikzcircuitssizeunit]\tikzlastnode.north west) edge[line to] ([xshift=0.25\tikzcircuitssizeunit, yshift=-0.25\tikzcircuitssizeunit]\tikzlastnode.south east)
   },
  circuit declare annotation={130}{0pt} % Transition to a higher quantity level
   {
@@ -220,8 +218,8 @@ rotate=180
   },
  circuit declare annotation={2112}{0pt} % Safety function
   {
-   [shift=(\tikzlastnode.north east),xshift=0.1\tikzcircuitssizeunit]
-   (0,0) edge[-,line to] ([xshift=0.1\tikzcircuitssizeunit]\tikzlastnode.south east)
+   [shift=(\tikzlastnode.north east),xshift=-0.3\tikzcircuitssizeunit]
+   (0,0) edge[-,line to] ([xshift=-0.3\tikzcircuitssizeunit]\tikzlastnode.south east)
   },
 }
 

@@ -95,16 +95,20 @@
 % Two-way valve
 \tikzset{2101 ISO14617 graphic/.style={
    circuit symbol lines,
-   circuit symbol size = width 2.5 height 2.5,
-   shape=generic circle ISO14617,
+   circuit symbol size = width 2.5 height 1.5,
+   shape=generic rectangle ISO14617,
    draw=none,
-   /pgf/generic circle ISO14617/before background={
-     \pgfpathmoveto{\pgfpoint{-1pt}{-0.6pt}}
-     \pgfpathlineto{\pgfpoint{1pt}{0.6pt}}
-     \pgfpathlineto{\pgfpoint{1pt}{-0.6pt}}
-     \pgfpathlineto{\pgfpoint{-1pt}{0.6pt}}
-     \pgfpathlineto{\pgfpoint{-1pt}{-0.6pt}}
-     \pgfusepathqstroke
+   /pgf/generic rectangle ISO14617/before background={
+     \pgfpathmoveto{\pgfpoint{-1pt}{1pt}}
+     \pgfpathlineto{\pgfpoint{0pt}{0pt}}
+     \pgfpathlineto{\pgfpoint{-1pt}{-1pt}}
+     \pgfpathclose
+     \pgfusepath{draw}
+     \pgfpathmoveto{\pgfpoint{1pt}{1pt}}
+     \pgfpathlineto{\pgfpoint{0pt}{0pt}}
+     \pgfpathlineto{\pgfpoint{1pt}{-1pt}}
+     \pgfpathclose
+     \pgfusepath{draw}
     },
    transform shape,
   }
@@ -298,20 +302,8 @@
 % Boiler, steam generator
 \tikzset{2531 ISO14617 graphic/.style={
    circuit symbol lines,
-   circuit symbol size = width 2.5 height 0.5,
-   draw=none,
-   shape=generic rectangle ISO14617,
-   /pgf/generic rectangle ISO14617/before background={
-    \pgf@process{\southwest}
-    \pgf@xa=\pgf@x
-    \pgf@ya=\pgf@y
-    \pgf@process{\northeast}
-    \pgf@xb=\pgf@x
-    \pgf@yb=\pgf@y
-    \pgfpathmoveto{\pgfqpoint{\pgf@xa}{\pgf@ya}}
-    \pgfpathlineto{\pgfqpoint{\pgf@xb}{\pgf@ya}}
-    \pgfusepathqstroke
-    },
+   circuit symbol size = width 2.5 height 2.5,
+   shape=2531 ISO14617,
    transform shape,
   }
 }
@@ -323,18 +315,18 @@
    shape=generic circle ISO14617,
    draw=none,
    /pgf/generic circle ISO14617/before background={
-    \pgfpathmoveto{\pgfpoint{-1pt}{1pt}}
-    \pgfpathlineto{\pgfpoint{1pt}{1pt}}
-    \pgfpathlineto{\pgfpoint{1pt}{-1pt}}
-    \pgfpathlineto{\pgfpoint{-1pt}{-1pt}}
-    \pgfpathclose
-    \pgfusepathqstroke
+     \pgfpathmoveto{\pgfpoint{-1pt}{1pt}}
+     \pgfpathlineto{\pgfpoint{1pt}{1pt}}
+     \pgfpathlineto{\pgfpoint{1pt}{-1pt}}
+     \pgfpathlineto{\pgfpoint{-1pt}{-1pt}}
+     \pgfpathclose
+     \pgfusepathqstroke
 
-    \pgfpathellipse{\pgfqpoint{-0.15pt}{0.5pt}}{\pgfqpoint{0.05pt}{0.25pt}}{\pgfqpoint{0.15pt}{0.05pt}}
-    \pgfusepath{draw}
-    \pgfpathmoveto{\pgfpoint{-0.3pt}{0.5pt}}
-    \pgfpathlineto{\pgfpoint{0pt}{0.5pt}}
-    \pgfusepath{draw}
+     \pgfpathellipse{\pgfqpoint{-0.15pt}{0.5pt}}{\pgfqpoint{0.05pt}{0.25pt}}{\pgfqpoint{0.15pt}{0.05pt}}
+     \pgfusepath{draw}
+     \pgfpathmoveto{\pgfpoint{-0.3pt}{0.5pt}}
+     \pgfpathlineto{\pgfpoint{0pt}{0.5pt}}
+     \pgfusepath{draw}
     },
    transform shape,
   }
