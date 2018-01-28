@@ -63,6 +63,7 @@
  rotodynamic/.style={2322},
  centrifugal/.style={2322},
  non return/.style={2111},
+ safety function/.style={2112},
  central control room/.style={1101},
  local control room/.style={1103},
  heating coil/.style={2501},
@@ -216,6 +217,11 @@ rotate=180
   {
    [shift=(\tikzlastnode.center),xshift=0.3\tikzcircuitssizeunit, yshift=0.5\tikzcircuitssizeunit]
    (0,0.5\tikzcircuitssizeunit) edge[<->,line to] (0, -0.25\tikzcircuitssizeunit)
+  },
+ circuit declare annotation={2112}{0pt} % Safety function
+  {
+   [shift=(\tikzlastnode.north east),xshift=0.1\tikzcircuitssizeunit]
+   (0,0) edge[-,line to] ([xshift=0.1\tikzcircuitssizeunit]\tikzlastnode.south east)
   },
 }
 
