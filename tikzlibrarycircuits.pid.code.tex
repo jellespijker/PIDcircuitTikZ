@@ -64,6 +64,7 @@
  rotodynamic/.style={2322},
  centrifugal/.style={2322},
  non return/.style={2111},
+ globe/.style={2121},
  safety function/.style={2112},
  central control room/.style={1101},
  local control room/.style={1103},
@@ -222,6 +223,10 @@ rotate=180
   {
    [shift=(\tikzlastnode.north east),xshift=-0.3\tikzcircuitssizeunit]
    (0,0) edge[-,line to] ([xshift=-0.3\tikzcircuitssizeunit]\tikzlastnode.south east)
+  },
+ circuit declare annotation={2121}{0pt} % Globe type
+  {
+   ([xshift=2pt]\tikzlastnode.center) edge[-,line width=4pt,to path={arc (-360:0:2pt)}] ()
   },
 }
 

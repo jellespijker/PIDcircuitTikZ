@@ -203,6 +203,7 @@ None available at the moment, feel free to contribute!
 \subsection{ISO 14617-8 Valves and dampers}
 \begin{symboltitled}{Two-way valve - 2101}\draw (0,0) to [valve] (2,0);\end{symboltitled}
 \begin{symboltitled}{Two-way valve non return - 2101, 2111}\draw (0,0) to [valve={non return}] (2,0);\end{symboltitled}
+\begin{symboltitled}{Two-way valve globe - 2101, 2121}\draw (0,0) to [valve={globe}] (2,0);\end{symboltitled}
 \begin{symboltitled}{Two-way valve safety function - 2101, 2112}\draw (0,0) to [valve={safety function}] (2,0);\end{symboltitled}
 \begin{symboltitled}{Two-way valve adjustable - 2101, 201}\draw (0,0) to [valve={adjustable}] (2,0);\end{symboltitled}
 \begin{symboltitled}{Two-way valve manual operation - 2101, 1021}
@@ -219,6 +220,10 @@ None available at the moment, feel free to contribute!
 \end{symboltitled}
 \begin{symboltitled}{Three-way valve - 2103}
  \draw (0,0) to [three way valve={name=V1}] (2,0);
+ \draw (V1.south) to ++(0,-0.5);
+\end{symboltitled}
+\begin{symboltitled}{Three-way valve globe - 2103, 2121}
+ \draw (0,0) to [three way valve={globe, name=V1}] (2,0);
  \draw (V1.south) to ++(0,-0.5);
 \end{symboltitled}
 \begin{symboltitled}{Three-way valve automatic operation (electric motor type) - 2103, 685}
