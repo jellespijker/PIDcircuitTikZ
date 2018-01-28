@@ -34,6 +34,7 @@
    set 2302 graphic = 2302 ISO14617 graphic,
    set 2101 graphic = 2101 ISO14617 graphic,
    set 2103 graphic = 2103 ISO14617 graphic,
+   set 2104 graphic = 2104 ISO14617 graphic,
    set 1011 graphic = 1011 ISO14617 graphic,
    set 1041 graphic = 1041 ISO14617 graphic,
    set 1021 graphic = 1021 ISO14617 graphic,
@@ -134,6 +135,38 @@
      \pgfpathmoveto{\pgfpoint{-0.6pt}{-1pt}}
      \pgfpathlineto{\pgfpoint{0pt}{0pt}}
      \pgfpathlineto{\pgfpoint{0.6pt}{-1pt}}
+     \pgfpathclose
+     \pgfusepath{draw}
+    },
+   transform shape,
+  }
+}
+
+% Four-way valve
+\tikzset{2104 ISO14617 graphic/.style={
+   circuit symbol lines,
+   circuit symbol size = width 2.5 height 2.5,
+   shape=generic rectangle ISO14617,
+   draw=none,
+   /pgf/generic rectangle ISO14617/before background={
+     \pgfpathmoveto{\pgfpoint{-1pt}{0.6pt}}
+     \pgfpathlineto{\pgfpoint{0pt}{0pt}}
+     \pgfpathlineto{\pgfpoint{-1pt}{-0.6pt}}
+     \pgfpathclose
+     \pgfusepath{draw}
+     \pgfpathmoveto{\pgfpoint{1pt}{0.6pt}}
+     \pgfpathlineto{\pgfpoint{0pt}{0pt}}
+     \pgfpathlineto{\pgfpoint{1pt}{-0.6pt}}
+     \pgfpathclose
+     \pgfusepath{draw}
+     \pgfpathmoveto{\pgfpoint{-0.6pt}{-1pt}}
+     \pgfpathlineto{\pgfpoint{0pt}{0pt}}
+     \pgfpathlineto{\pgfpoint{0.6pt}{-1pt}}
+     \pgfpathclose
+     \pgfusepath{draw}
+     \pgfpathmoveto{\pgfpoint{-0.6pt}{1pt}}
+     \pgfpathlineto{\pgfpoint{0pt}{0pt}}
+     \pgfpathlineto{\pgfpoint{0.6pt}{1pt}}
      \pgfpathclose
      \pgfusepath{draw}
     },

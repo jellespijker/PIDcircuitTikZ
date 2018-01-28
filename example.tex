@@ -217,10 +217,26 @@ None available at the moment, feel free to contribute!
  \draw (0,0) to [valve={name=V1}] (2,0);
  \node [automatic operation, at=V1]{M};
 \end{symboltitled}
-\begin{symboltitled}{Three-way valve - 2103}\draw (0,0) to [three way valve] (2,0);\end{symboltitled}
+\begin{symboltitled}{Three-way valve - 2103}
+ \draw (0,0) to [three way valve={name=V1}] (2,0);
+ \draw (V1.south) to ++(0,-0.5);
+\end{symboltitled}
 \begin{symboltitled}{Three-way valve automatic operation (electric motor type) - 2103, 685}
  \draw (0,0) to [three way valve={name=V1}] (2,0);
  \node [automatic operation, at=V1]{M};
+ \draw (V1.south) to ++(0,-0.5);
+\end{symboltitled}
+\begin{symboltitled}{Four-way valve - 2104}
+ \draw (0,0) to [four way valve={name=V1}] (2,0);
+ \draw (V1.south) to ++(0,-0.5);
+ \draw (V1.north) to ++(0,0.5);
+\end{symboltitled}
+\begin{symboltitled}{Four-way valve automatic operation (electric motor type) - 2104, 685}
+ \draw (0,0) to [four way valve={name=V1}] (2,0);
+ \draw (V1.south) to ++(0,-0.5);
+ \draw (V1.north) to ++(0,0.5);
+ \node [automatic operation={name=V1C}] at ([yshift=10]V1.north west) {M};
+ \draw (V1C) to (V1.north west) to (V1.center);
 \end{symboltitled}
 
 \subsection{ISO 14617-9 Pumps, compressors and fans}
