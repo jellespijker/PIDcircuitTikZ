@@ -36,6 +36,7 @@
    set 2102 graphic = 2102 ISO14617 graphic,
    set 2103 graphic = 2103 ISO14617 graphic,
    set 2104 graphic = 2104 ISO14617 graphic,
+   set 2151 graphic = 2151 ISO14617 graphic,
    set 1011 graphic = 1011 ISO14617 graphic,
    set 1041 graphic = 1041 ISO14617 graphic,
    set 1021 graphic = 1021 ISO14617 graphic,
@@ -192,6 +193,25 @@
      \pgfpathlineto{\pgfpoint{0pt}{0pt}}
      \pgfpathlineto{\pgfpoint{0.6pt}{1pt}}
      \pgfpathclose
+     \pgfusepath{draw}
+    },
+   transform shape,
+  }
+}
+
+% Two- or three-way damper
+\tikzset{2151 ISO14617 graphic/.style={
+   circuit symbol lines,
+   circuit symbol size = width 2.5 height 2.5,
+   shape=generic rectangle ISO14617,
+   /pgf/generic rectangle ISO14617/before background={
+     \pgfpathmoveto{\pgfpoint{-0.8pt}{0.8pt}}
+     \pgfpathlineto{\pgfpoint{-0.1pt}{0.1pt}}
+     \pgfusepath{draw}
+     \pgfpathmoveto{\pgfpoint{0.8pt}{-0.8pt}}
+     \pgfpathlineto{\pgfpoint{0.1pt}{-0.1pt}}
+     \pgfusepath{draw}
+     \pgfpathcircle{\pgfpoint{0pt}{0pt}}{0.1}
      \pgfusepath{draw}
     },
    transform shape,
