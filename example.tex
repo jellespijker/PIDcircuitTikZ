@@ -218,6 +218,11 @@ None available at the moment, feel free to contribute!
  \draw (0,0) to [valve={name=V1}] (2,0);
  \node [automatic operation, at=V1]{M};
 \end{symboltitled}
+\begin{symboltitled}{Angled two-way valve - 2102}
+ \node [angled valve={name=V1}] {};
+ \draw (V1.east) to ++(0.5,0);
+ \draw (V1.south) to ++(0,-0.5);
+\end{symboltitled}
 \begin{symboltitled}{Three-way valve - 2103}
  \draw (0,0) to [three way valve={name=V1}] (2,0);
  \draw (V1.south) to ++(0,-0.5);
