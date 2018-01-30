@@ -238,3 +238,5 @@ assignment/software/
 __pycache__/
 *.tmp
 *.atomignore
+*.listing
+*.tcbtemp
