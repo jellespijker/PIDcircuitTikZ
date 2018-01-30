@@ -51,6 +51,7 @@
    set 2551 graphic = 2551 ISO14617 graphic,
    set 2062 graphic = 2062 ISO14617 graphic,
    set 2002 graphic = 2002 ISO14617 graphic,
+   set 2518 graphic = 2518 ISO14617 graphic,
    set branch graphic = branch ISO14617 graphic,
   }
 }
@@ -445,6 +446,24 @@
    circuit symbol size = width 0.5 height 1.5,
    shape=generic rectangle ISO14617,
    draw=none,
+   /pgf/generic rectangle ISO14617/before background={
+     \pgfpathmoveto{\pgfpoint{0pt}{1pt}}
+     \pgfpathlineto{\pgfpoint{1pt}{0.7pt}}
+     \pgfpathlineto{\pgfpoint{-1pt}{0.35pt}}
+     \pgfpathlineto{\pgfpoint{1pt}{-0.35pt}}
+     \pgfpathlineto{\pgfpoint{-1pt}{-0.7pt}}
+     \pgfpathlineto{\pgfpoint{0pt}{-1pt}}
+     \pgfusepath{draw}
+    },
+   transform shape,
+  }
+}
+
+% Spring
+\tikzset{2518 ISO14617 graphic/.style={
+   circuit symbol lines,
+   circuit symbol size = width 2.5 height 4,
+   shape=2518 ISO14617,
    /pgf/generic rectangle ISO14617/before background={
      \pgfpathmoveto{\pgfpoint{0pt}{1pt}}
      \pgfpathlineto{\pgfpoint{1pt}{0.7pt}}

@@ -317,6 +317,14 @@ None available at the moment, feel free to contribute!
 \begin{symboltitled}{Heat pump bi-functional - 2551, 132}\draw (0,0) to [heat pump={quantity transition to higher and lower}] (2,0);\end{symboltitled}
 \begin{symboltitled}{Refrigerator - 2551, 131}\draw (0,0) to [refrigerator={quantity transition to lower}] (2,0);\end{symboltitled}
 \begin{symboltitled}{Freezer - 2551, 131}\draw (0,0) to [freezer={quantity transition to lower}] (2,0);\end{symboltitled}
+\begin{symboltitled}{Regenerative pre-heater - 2518}
+ \node [regenerative pre-heater={name=PH1}] {};
+ \draw (PH1.input in) to ++(-0.5,0);
+ \draw (PH1.output in) to ++(0.5,0);
+ \draw (PH1.input out) to ++(-0.5,0);
+ \draw (PH1.output out) to ++(0.5,0);
+\end{symboltitled}
+
 
 \subsection{ISO 14617-12 Devices for separating, purification and mixing}
 \begin{symboltitled}{Tank - 301}\draw (0,0) to [tank] (2,0);\end{symboltitled}
