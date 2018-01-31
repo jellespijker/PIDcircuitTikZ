@@ -1,0 +1,41 @@
+%\documentclass[a3paper]{draftdrawing}
+\documentclass[a4paper, landscape, border=5mm]{draftdrawing}
+
+\begin{document}
+
+\title{Simple diagram}
+\designedby{Jelle Spijker}
+\checkedby{}
+\approvedby{}
+\draftnumber{A001}
+\revision{A}
+\remarks{some short remarks}
+\logo{logo.png}
+\scale{1:1}
+\unit{mm}
+\draftdate{\today}
+
+\begin{tikzdraft}[every info/.style={font=\tiny}]
+ \draw (0,0) to [pump={displacement,name=P1,info=$P_1$}] (2,0)
+ to [branch={name=T1}] (2.5,0)
+ to [flow direction={speed=3}] (3,0)
+ to [valve={name=V1,info'=$V_{1}$}](4,0)
+ to [three way valve={globe, name=V2,info=below right:$V_2$}] ++(1,0)
+ to [tank={name=B1,with={heating coil}{0pt}{0pt}}] ++(1,0)
+ to [tank={name=F1, with={filter element}{0}{-0.5}, with={spray nozzle}{0}{0.8}}] ++ (1,0);
+ \draw (V2.south) to [pump={name=P2,info=$P_2$}] ++(0,-2)
+ to [measurement point={name=M1}] ++(-2,0)
+ to (\currentcoordinate -| T1)
+ to [valve={non return,info=$V_3$}] (T1);
+ \node[measurement device=local control room, at={M1.center}{1}, measure=P]{};
+ \node[turning actuator, at={V1.center}{1}]{};
+ \node[automatic operation, at={V2.center}{1}]{M};
+ \node[steam generator={with={fired type}{0}{-0.25},name=B2}, below=of F1] {};
+ \draw (B1-heating coil.south) to  (B1-heating coil.north |- B2.input)
+ to [valve, circuit symbol unit=3pt] (B2.input);
+ \draw (B1-heating coil.north) to ++(0, 0.5)
+ to ++(1,0);
+ \draw (F1-spray nozzle.north) to ++(0,0.15)
+ to [valve, circuit symbol unit=3pt] ++(1, 0);
+\end{tikzdraft}
+\end{document}
