@@ -52,6 +52,7 @@
    set 2062 graphic = 2062 ISO14617 graphic,
    set 2002 graphic = 2002 ISO14617 graphic,
    set 2518 graphic = 2518 ISO14617 graphic,
+   set 2602-bag graphic = 2602-bag ISO14617 graphic,
    set branch graphic = branch ISO14617 graphic,
   }
 }
@@ -338,6 +339,35 @@
      \pgfpathmoveto{\pgfpoint{1.15pt}{0pt}}
      \pgfpathlineto{\pgfpoint{2pt}{0pt}}
      \pgfusepathqstroke
+    },
+   transform shape,
+  }
+}
+
+% Bag screen or filter element
+\tikzset{2602-bag ISO14617 graphic/.style={
+   circuit symbol lines,
+   circuit symbol size = width 2.5 height 2.5,
+   shape=generic circle ISO14617,
+   draw=none,
+   /pgf/generic circle ISO14617/before background={
+     \pgfpathmoveto{\pgfpoint{-1pt}{0pt}}
+     \pgfpathlineto{\pgfpoint{-0.6pt}{0pt}}
+     \pgfpathmoveto{\pgfpoint{-0.4pt}{0pt}}
+     \pgfpathlineto{\pgfpoint{-0.25pt}{0pt}}
+     \pgfpathlineto{\pgfpoint{-0.25pt}{-0.25pt}}
+     \pgfpathmoveto{\pgfpoint{-0.25pt}{-0.45pt}}
+     \pgfpathlineto{\pgfpoint{-0.25pt}{-0.70pt}}
+     \pgfpathmoveto{\pgfpoint{-0.25pt}{-0.90pt}}
+     \pgfpathlineto{\pgfpoint{0.25pt}{-0.90pt}}
+     \pgfpathmoveto{\pgfpoint{1pt}{0pt}}
+     \pgfpathlineto{\pgfpoint{0.6pt}{0pt}}
+     \pgfpathmoveto{\pgfpoint{0.4pt}{0pt}}
+     \pgfpathlineto{\pgfpoint{0.25pt}{0pt}}
+     \pgfpathlineto{\pgfpoint{0.25pt}{-0.25pt}}
+     \pgfpathmoveto{\pgfpoint{0.25pt}{-0.45pt}}
+     \pgfpathlineto{\pgfpoint{0.25pt}{-0.70pt}}
+     \pgfusepath{draw}
     },
    transform shape,
   }
