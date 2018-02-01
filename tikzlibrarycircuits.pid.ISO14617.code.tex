@@ -55,6 +55,7 @@
    set 2518 graphic = 2518 ISO14617 graphic,
    set 2602-bag graphic = 2602-bag ISO14617 graphic,
    set branch graphic = branch ISO14617 graphic,
+   set reference graphic = reference ISO14617 graphic,
   }
 }
 
@@ -511,6 +512,28 @@
      \pgfpathlineto{\pgfpoint{-0.5pt}{-0.71pt}}
      \pgfpathmoveto{\pgfpoint{0.5pt}{0.71pt}}
      \pgfpathlineto{\pgfpoint{0.5pt}{-0.71pt}}
+     \pgfusepath{draw}
+    },
+   transform shape,
+  }
+}
+
+% Reference arrow
+\tikzset{reference ISO14617 graphic/.style={
+   circuit symbol lines,
+   circuit symbol size = width 1.5 height 1.25,
+   shape=generic rectangle ISO14617,
+   draw=none,
+   /pgf/generic rectangle ISO14617/before background={
+     \pgfpathmoveto{\pgfpoint{1pt}{0pt}}
+     \pgfpathlineto{\pgfpoint{0.5pt}{1pt}}
+     \pgfpathlineto{\pgfpoint{0.5pt}{0.5pt}}
+     \pgfpathlineto{\pgfpoint{-1pt}{0.5pt}}
+     \pgfpathmoveto{\pgfpoint{1pt}{0pt}}
+     \pgfpathlineto{\pgfpoint{0.5pt}{-1pt}}
+     \pgfpathlineto{\pgfpoint{0.5pt}{-0.5pt}}
+     \pgfpathlineto{\pgfpoint{-1pt}{-0.5pt}}
+     \pgfpathlineto{\pgfpoint{-1pt}{0.5pt}}
      \pgfusepath{draw}
     },
    transform shape,
