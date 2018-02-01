@@ -239,7 +239,7 @@
 }
 
 % Heat-exchanger with straight tubes (fixed-tube plates)
-\pgfdeclareshape{heat exhanger long ISO14617}
+\pgfdeclareshape{heat exchanger long ISO14617}
 {
  \inheritsavedanchors[from=rectangle]
  \inheritanchorborder[from=rectangle]
@@ -302,12 +302,12 @@
   \pgfusepath{draw}
   \pgfsys@endscope
   \pgfsys@beginscope
-  \pgfkeysvalueof{/pgf/heat exhanger long ISO14617/before background}%
+  \pgfkeysvalueof{/pgf/heat exchanger long ISO14617/before background}%
   \pgfsys@endscope
  }
 }
 
 \pgfkeys{
- /pgf/heat exhanger long ISO14617/before background/.initial=,
+ /pgf/heat exchanger long ISO14617/before background/.initial=,
 }
 \endinput
