@@ -75,13 +75,13 @@
  safety function/.style={2112},
  central control room/.style={1101},
  local control room/.style={1103},
- heating coil/.style={2501},
- cooling coil/.style={2501},
- screen element/.style={2602},
- filter element/.style={2602},
- bag filter element/.style={2602-bag},
- spray nozzle/.style={2037},
- fired type/.style={2541},
+ heating coil/.style={2501={#1}},
+ cooling coil/.style={2501={#1}},
+ screen element/.style={2602={#1}},
+ filter element/.style={2602={#1}},
+ bag filter element/.style={2602-bag={#1}},
+ spray nozzle/.style={2037={#1}},
+ fired type/.style={2541={#1}},
  quantity transition to higher/.style={130},
  quantity transition to lower/.style={131},
  quantity transition to higher and lower/.style={132},
@@ -162,42 +162,27 @@ rotate=180
 
 % Process measure and control
 \tikzset{
-measure/.style args={#1}{
-  append after command={%
-    \pgfextra
-    \node[scale=0.35, anchor=south, yshift=-2*\the\pgflinewidth] at (\tikzlastnode) {#1};
-    \tikz@after@path%
-    \endpgfextra
-   }
- },
-at/.style args={#1#2}{
-  above=#2\tikzcircuitssizeunit of #1,
-  append after command={%
-    \pgfextra
-    \draw (\tikzlastnode) to (#1);
-    \tikz@after@path%
-    \endpgfextra
-   }
- },
-%at/.default={}{center}{0.5}
-at'/.style args={#1#2#3}{
-below=#2\tikzcircuitssizeunit of #1,
-append after command={%
-  \pgfextra
-  \draw (\tikzlastnode) to (#1);
-  \tikz@after@path%
-  \endpgfextra
- }
-},
-%at'/.default={}{center}{0.5}
-with/.style args={#1#2#3}{
-  append after command={%
-    \pgfextra
-    \node[#1] at ([xshift=#2*\tikzcircuitssizeunit,yshift=#3*\tikzcircuitssizeunit]\tikzlastnode) (\tikzlastnode-#1) {};
-    \tikz@after@path%
-    \endpgfextra
-   }
- }
+ measure/.style args={#1}{
+   append after command={%
+     \pgfextra
+     \node[scale=0.35, anchor=south, yshift=-2*\the\pgflinewidth] at (\tikzlastnode) {#1};
+     \tikz@after@path%
+     \endpgfextra
+    }
+  },
+ at/.style args={#1#2#3}{
+   above=#2\tikzcircuitssizeunit of #1, #3,
+   append after command={%
+     \pgfextra{
+      \draw (\tikzlastnode) to (#1);}
+    }
+  },
+ with/.style args={#1#2#3#4}{
+   append after command={%
+     \pgfextra{
+      \node[#1={name=\tikzlastnode-#1,#4}] at ([xshift=#2*\tikzcircuitssizeunit,yshift=#3*\tikzcircuitssizeunit]\tikzlastnode) {};}
+    }
+  }
 }
 
 % Annotations
