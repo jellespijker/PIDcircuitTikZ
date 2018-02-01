@@ -62,6 +62,7 @@
  pressure vessel/.style={2062={#1}},
  vacuum vessel/.style={2062={#1}},
  regenerative pre-heater/.style={2518={#1}},
+ straight tube heat exhanger/.style={2511={#1}},
 }
 
 % Annotations user-friendly aliases
@@ -111,6 +112,7 @@
  circuit declare symbol = 2551, % Heat pump, refrigerator or freezer
  circuit declare symbol = 2062, % Pressure or vacuum vessel
  circuit declare symbol = 2518, % Regenerative pre-heater
+ circuit declare symbol = 2511, % Heat-exchanger with straight tubes (fixed-tube plates)
  circuit declare symbol = flow direction,
  circuit declare symbol = flow direction',
  circuit declare symbol = branch,
@@ -163,7 +165,7 @@ rotate=180
 measure/.style args={#1}{
   append after command={%
     \pgfextra
-    \node[scale=0.4, anchor=south, yshift=-2*\the\pgflinewidth] at (\tikzlastnode) {#1};
+    \node[scale=0.35, anchor=south, yshift=-2*\the\pgflinewidth] at (\tikzlastnode) {#1};
     \tikz@after@path%
     \endpgfextra
    }

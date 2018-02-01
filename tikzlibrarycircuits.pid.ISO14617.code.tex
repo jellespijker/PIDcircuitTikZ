@@ -44,6 +44,7 @@
    set 685 graphic = 685 ISO14617 graphic,
    set 301 graphic = 301 ISO14617 graphic,
    set 2501 graphic = 2501 ISO14617 graphic,
+   set 2511 graphic = 2511 ISO14617 graphic,
    set 2602 graphic = 2602 ISO14617 graphic,
    set 2037 graphic = 2037 ISO14617 graphic,
    set 2541 graphic = 2541 ISO14617 graphic,
@@ -205,7 +206,7 @@
 % Two- or three-way damper
 \tikzset{2151 ISO14617 graphic/.style={
    circuit symbol lines,
-   circuit symbol size = width 2.5 height 2.5,
+   circuit symbol size = width 2 height 2,
    shape=generic rectangle ISO14617,
    /pgf/generic rectangle ISO14617/before background={
      \pgfpathmoveto{\pgfpoint{-0.8pt}{0.8pt}}
@@ -489,18 +490,27 @@
   }
 }
 
-% Spring
+% Regenerative pre-heater
 \tikzset{2518 ISO14617 graphic/.style={
    circuit symbol lines,
    circuit symbol size = width 2.5 height 4,
    shape=2518 ISO14617,
-   /pgf/generic rectangle ISO14617/before background={
-     \pgfpathmoveto{\pgfpoint{0pt}{1pt}}
-     \pgfpathlineto{\pgfpoint{1pt}{0.7pt}}
-     \pgfpathlineto{\pgfpoint{-1pt}{0.35pt}}
-     \pgfpathlineto{\pgfpoint{1pt}{-0.35pt}}
-     \pgfpathlineto{\pgfpoint{-1pt}{-0.7pt}}
-     \pgfpathlineto{\pgfpoint{0pt}{-1pt}}
+   transform shape,
+  }
+}
+
+% Heat-exchanger with straight tubes (fixed-tube plates)
+\tikzset{2511 ISO14617 graphic/.style={
+   circuit symbol lines,
+   circuit symbol size = width 2.5 height 5,
+   shape=heat exhanger long ISO14617,
+   /pgf/heat exhanger long ISO14617/before background={
+     \pgfpathmoveto{\pgfpoint{0pt}{0.71pt}}
+     \pgfpathlineto{\pgfpoint{0pt}{-0.71pt}}
+     \pgfpathmoveto{\pgfpoint{-0.5pt}{0.71pt}}
+     \pgfpathlineto{\pgfpoint{-0.5pt}{-0.71pt}}
+     \pgfpathmoveto{\pgfpoint{0.5pt}{0.71pt}}
+     \pgfpathlineto{\pgfpoint{0.5pt}{-0.71pt}}
      \pgfusepath{draw}
     },
    transform shape,
