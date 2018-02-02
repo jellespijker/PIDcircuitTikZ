@@ -240,6 +240,11 @@ rotate=180
   {
    ([xshift=2pt]\tikzlastnode.center) edge[-,line width=4pt,to path={arc (-360:0:2pt)}] ()
   },
+ circuit declare annotation={light}{0pt} % N
+  {
+   ([xshift=-0.75\tikzcircuitssizeunit,yshift=1\tikzcircuitssizeunit]\tikzlastnode.north) edge[line to] ([xshift=-0.25\tikzcircuitssizeunit,yshift=0.1\tikzcircuitssizeunit]\tikzlastnode.north)
+   ([xshift=-0.25\tikzcircuitssizeunit,yshift=1\tikzcircuitssizeunit]\tikzlastnode.north) edge[line to] ([xshift=0.25\tikzcircuitssizeunit,yshift=0.1\tikzcircuitssizeunit]\tikzlastnode.north)
+  },
 }
 
 \makeatletter
