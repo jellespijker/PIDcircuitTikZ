@@ -108,7 +108,7 @@
 
 \tikzset{
  titleblockformat/.pic = {
-   \node [titleblockcell, anchor=north west, align=center,yshift=0.5\dd@linewidthborder] (logocell) at (0mm,0mm) {\includegraphics[height=37mm]{\@logo}};
+   \node [titleblockcell, anchor=north west, align=center,yshift=0.5\dd@linewidthborder,minimum height=37mm] (logocell) at (0mm,0mm) {\includegraphics[width=37mm]{\@logo}};
    \node [titleblockcell, anchor=south west, minimum width=100mm, minimum height=10mm,xshift=-\dd@linewidthborder] (titlecell) at (logocell.south east) {\Huge \textbf{\@title}};
    \node [titleblockcell, anchor=south east, align=center, minimum height=10mm, minimum width=12mm, yshift=-0.5\dd@linewidthborder, xshift=0.5\dd@linewidthborder] (paperformatcell) at (180mm,-37mm) {\Huge \@paperformat};
    \node [titleblockcell, minimum height=10mm, anchor=north west, xshift=-\dd@linewidthborder, minimum width=30mm+\dd@linewidthborder, text width=30mm-2\dd@linewidthborder] (draftnumbercell) at (titlecell.north east) {\small{Number:}\\ \footnotesize{\@draftnumber - \@revision}};
