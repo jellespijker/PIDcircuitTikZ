@@ -235,6 +235,52 @@
  }
 }
 
+% Cooling tower
+\pgfdeclareshape{2521 ISO14617}
+{
+ \inheritsavedanchors[from=rectangle]
+ \inheritanchorborder[from=rectangle]
+ \inheritanchor[from=rectangle]{north}
+ \inheritanchor[from=rectangle]{north west}
+ \inheritanchor[from=rectangle]{north east}
+ \inheritanchor[from=rectangle]{center}
+ \inheritanchor[from=rectangle]{west}
+ \inheritanchor[from=rectangle]{east}
+ \inheritanchor[from=rectangle]{mid}
+ \inheritanchor[from=rectangle]{mid west}
+ \inheritanchor[from=rectangle]{mid east}
+ \inheritanchor[from=rectangle]{base}
+ \inheritanchor[from=rectangle]{base west}
+ \inheritanchor[from=rectangle]{base east}
+ \inheritanchor[from=rectangle]{south}
+ \inheritanchor[from=rectangle]{south west}
+ \inheritanchor[from=rectangle]{south east}
+ \anchor{input}{
+  \pgf@process{\west}%
+ }
+ \anchor{output}{%
+  \pgf@process{\east}%
+ }
+
+ \beforebackgroundpath {
+  \pgfmathsetlength{\pgf@xa}{\pgfkeysvalueof{/pgf/minimum height}}
+  \pgftransformyscale{\pgf@sys@tonumber{\pgf@xa}/2}
+  \pgfmathsetlength{\pgf@ya}{\pgfkeysvalueof{/pgf/minimum width}}
+  \pgftransformxscale{\pgf@sys@tonumber{\pgf@ya}/2}
+  \pgfsys@beginscope
+  \pgfpathmoveto{\pgfpoint{-1}{-0.5pt}}
+  \pgfpathlineto{\pgfpoint{-0.5pt}{1pt}}
+  \pgfpathlineto{\pgfpoint{0.5pt}{1pt}}
+  \pgfpathlineto{\pgfpoint{1pt}{-0.5pt}}
+  \pgfpathlineto{\pgfpoint{-1pt}{-0.5pt}}
+  \pgfpathlineto{\pgfpoint{-1pt}{-1pt}}
+  \pgfpathlineto{\pgfpoint{1pt}{-1pt}}
+  \pgfpathlineto{\pgfpoint{1pt}{-0.5pt}}
+  \pgfusepath{draw}
+  \pgfsys@endscope
+ }
+}
+
 % Heat-exchanger with straight tubes (fixed-tube plates)
 \pgfdeclareshape{heat exchanger long ISO14617}
 {

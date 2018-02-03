@@ -53,6 +53,7 @@
    set 2062 graphic = 2062 ISO14617 graphic,
    set 2002 graphic = 2002 ISO14617 graphic,
    set 2518 graphic = 2518 ISO14617 graphic,
+   set 2521 graphic = 2521 ISO14617 graphic,
    set 2602-bag graphic = 2602-bag ISO14617 graphic,
    set branch graphic = branch ISO14617 graphic,
    set reference graphic = reference ISO14617 graphic,
@@ -493,6 +494,15 @@
    circuit symbol lines,
    circuit symbol size = width 2.5 height 4,
    shape=2518 ISO14617,
+   transform shape,
+  }
+}
+
+% Cooling tower
+\tikzset{2521 ISO14617 graphic/.style={
+   circuit symbol lines,
+   circuit symbol size = width 2.5 height 4,
+   shape=2521 ISO14617,
    transform shape,
   }
 }
