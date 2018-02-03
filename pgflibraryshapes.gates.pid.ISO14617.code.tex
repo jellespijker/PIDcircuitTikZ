@@ -256,10 +256,16 @@
  \inheritanchor[from=rectangle]{south west}
  \inheritanchor[from=rectangle]{south east}
  \anchor{input}{
-  \pgf@process{\west}%
+  \pgf@process{\northeast}%
+  \pgf@ya=.25\pgf@y%
+  \pgf@process{\southwest}%
+  \advance\pgf@y by \pgf@ya%
  }
  \anchor{output}{%
-  \pgf@process{\east}%
+  \pgf@process{\northeast}%
+  \pgf@ya=-1.75\pgf@y%
+  \pgf@process{\southeast}%
+  \advance\pgf@y by \pgf@ya%
  }
 
  \beforebackgroundpath {
