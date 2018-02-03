@@ -331,6 +331,22 @@ None available at the moment, feel free to contribute!
  \draw (PH1.refrigerant in) to ++(-0.5,0);
  \draw (PH1.refrigerant out) to ++(0.5,0);
 \end{symboltitled}
+\begin{symboltitled}{Cooling tower - 2521}
+ \node [cooling tower={name=CT1}] {};
+\end{symboltitled}
+\begin{symboltitled}{Cooling tower, humidifier - X2521}
+ \node [cooling tower={name=CT1, with={spray nozzle}{0}{2.5}}] {};
+ \draw (CT1-spray nozzle.north) to ++(-1,0);
+\end{symboltitled}
+\begin{symboltitled}{Cooling tower with induced draft - X2522}
+ \node [cooling tower={with={fan}{0}{2.5}{rotate=90, scale=0.5}}] {};
+\end{symboltitled}
+\begin{symboltitled}{Cooling tower with forced draft - X2523}
+ \node [cooling tower={with={fan}{0}{-3}{rotate=90, scale=0.5}}] {};
+\end{symboltitled}
+\begin{symboltitled}{Solar collector}
+ \node [envelope={light, quantity transition to higher, info={[xshift=-2, yshift=-10]\tiny T}}] {};
+\end{symboltitled}
 
 \subsection{ISO 14617-12 Devices for separating, purification and mixing}
 \begin{symboltitled}{Tank - 301}\draw (0,0) to [tank] (2,0);\end{symboltitled}
@@ -347,6 +363,11 @@ None available at the moment, feel free to contribute!
 \begin{symboltitled}{Filter element - 2602}\node [filter element] {};\end{symboltitled}
 \begin{symboltitled}{Bag filter element - 2602-bag}\node [bag filter element] {};\end{symboltitled}
 \begin{symboltitled}{Bag filter - X2606 301, 2602}\node [tank={with={bag filter element}{0}{0.25}}] {};\end{symboltitled}
+\begin{symboltitled}{Device for separating - 2601}\node [device for separating] {};\end{symboltitled}
+\begin{symboltitled}{Thermal separator using direct-heating source - X2632 2541, 2601}\node [envelope={device for separating, with={fired type}{0}{-0.5}}] {};\end{symboltitled}
+\begin{symboltitled}{Ion exchange separator - X2633}\node [envelope={device for separating, info={[yshift=-15]\tiny ION}}] {};\end{symboltitled}
+\begin{symboltitled}{Biological filter - X2634}\node [envelope={device for separating, info={[yshift=-15]\tiny BIO}}] {};\end{symboltitled}
+\begin{symboltitled}{Chemical filter - X2632}\node [envelope={device for separating, info={[yshift=-15]\tiny CH}}] {};\end{symboltitled}
 
 \subsection{ISO 14617-13 Devices for material processing}
 None available at the moment, feel free to contribute!
