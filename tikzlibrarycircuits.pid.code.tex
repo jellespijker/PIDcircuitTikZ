@@ -85,6 +85,7 @@
  quantity transition to higher/.style={130},
  quantity transition to lower/.style={131},
  quantity transition to higher and lower/.style={132},
+ device for separating/.style={2601},
 }
 
 % The default symbols (you need to load a sublib to install the actual rendering).
@@ -244,6 +245,11 @@ rotate=180
   {
    ([xshift=-0.75\tikzcircuitssizeunit,yshift=1\tikzcircuitssizeunit]\tikzlastnode.north) edge[line to] ([xshift=-0.25\tikzcircuitssizeunit,yshift=0.1\tikzcircuitssizeunit]\tikzlastnode.north)
    ([xshift=-0.25\tikzcircuitssizeunit,yshift=1\tikzcircuitssizeunit]\tikzlastnode.north) edge[line to] ([xshift=0.25\tikzcircuitssizeunit,yshift=0.1\tikzcircuitssizeunit]\tikzlastnode.north)
+  },
+ circuit declare annotation={2601}{0pt} % N
+  {
+   ([xshift=-0.75\tikzcircuitssizeunit,yshift=0.75\tikzcircuitssizeunit]\tikzlastnode.center) edge[line to] ([xshift=0.75\tikzcircuitssizeunit,yshift=0.75\tikzcircuitssizeunit]\tikzlastnode.center)
+   ([xshift=-0.25\tikzcircuitssizeunit,yshift=0.75\tikzcircuitssizeunit]\tikzlastnode.center) edge[line to] ([xshift=0.65\tikzcircuitssizeunit,yshift=0.35\tikzcircuitssizeunit]\tikzlastnode.center)
   },
 }
 
