@@ -87,7 +87,6 @@
  \inheritanchor[from=rectangle pid]{input}
  \inheritanchor[from=rectangle pid]{output}
  \inheritanchorborder[from=rectangle pid]
-
  \inheritbackgroundpath[from=rectangle pid]
 
  \beforebackgroundpath {
@@ -95,9 +94,7 @@
   \pgftransformyscale{\pgf@sys@tonumber{\pgf@xa}/2}
   \pgfmathsetlength{\pgf@ya}{\pgfkeysvalueof{/pgf/minimum width}}
   \pgftransformxscale{\pgf@sys@tonumber{\pgf@ya}/2}
-  \pgfsys@beginscope
   \pgfkeysvalueof{/pgf/generic rectangle ISO14617/before background}%
-  \pgfsys@endscope
  }
 }
 
