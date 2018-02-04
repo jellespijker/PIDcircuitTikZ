@@ -22,7 +22,6 @@
 
 \usetikzlibrary{circuits.pid}
 \usetikzlibrary{arrows}
-
 \usepgflibrary{shapes.gates.pid.ISO14617}
 
 % When this lib is loaded, all symbols default to ISO14617
@@ -54,8 +53,10 @@
    set 2002 graphic = 2002 ISO14617 graphic,
    set 2518 graphic = 2518 ISO14617 graphic,
    set 2521 graphic = 2521 ISO14617 graphic,
+   set 2514 graphic = 2514 ISO14617 graphic,
    set 2602-bag graphic = 2602-bag ISO14617 graphic,
    set branch graphic = branch ISO14617 graphic,
+   set crossing graphic = crossing ISO14617 graphic,
    set reference graphic = reference ISO14617 graphic,
   }
 }
@@ -67,6 +68,23 @@
    circuit symbol size=width .5 height .5,
    shape=circle pid,
    outer sep=.25\pgflinewidth
+  }
+}
+
+% crossing
+\tikzset{
+ crossing ISO14617 graphic/.style={
+   circuit symbol wires,
+   circuit symbol size=width 1 height .1,
+   shape=generic circle ISO14617,
+   draw=none,
+   fill=white,
+   /pgf/generic circle ISO14617/before background={
+     \pgfpathmoveto{\pgfpoint{0.0pt}{-1.0pt}}
+     \pgfpathlineto{\pgfpoint{0.0pt}{1.0pt}}
+     \pgfusepathqstroke
+    },
+   transform shape,
   }
 }
 
@@ -519,6 +537,35 @@
      \pgfpathlineto{\pgfpoint{-0.5pt}{-0.71pt}}
      \pgfpathmoveto{\pgfpoint{0.5pt}{0.71pt}}
      \pgfpathlineto{\pgfpoint{0.5pt}{-0.71pt}}
+     \pgfusepath{draw}
+    },
+   transform shape,
+  }
+}
+
+% Heat-exchanger with coil-shaped tubes
+\tikzset{2514 ISO14617 graphic/.style={
+   circuit symbol lines,
+   circuit symbol size = width 2.5 height 5,
+   shape=heat exchanger long ISO14617,
+   /pgf/heat exchanger long ISO14617/before background={
+     \pgfpathmoveto{\pgfpoint{0.5pt}{0pt}}
+     \pgfpathlineto{\pgfpoint{-0.5pt}{0.125pt}}
+     \pgfpathlineto{\pgfpoint{0.5pt}{0.25pt}}
+     \pgfpathlineto{\pgfpoint{-0.5pt}{0.375pt}}
+     \pgfpathlineto{\pgfpoint{0.5pt}{0.5pt}}
+     \pgfpathlineto{\pgfpoint{-0.5pt}{0.625pt}}
+     \pgfpathlineto{\pgfpoint{0pt}{0.6875pt}}
+     \pgfpathlineto{\pgfpoint{0pt}{0.71pt}}
+
+     \pgfpathmoveto{\pgfpoint{0.5pt}{0pt}}
+     \pgfpathlineto{\pgfpoint{-0.5pt}{-0.125pt}}
+     \pgfpathlineto{\pgfpoint{0.5pt}{-0.25pt}}
+     \pgfpathlineto{\pgfpoint{-0.5pt}{-0.375pt}}
+     \pgfpathlineto{\pgfpoint{0.5pt}{-0.5pt}}
+     \pgfpathlineto{\pgfpoint{-0.5pt}{-0.625pt}}
+     \pgfpathlineto{\pgfpoint{0pt}{-0.6875pt}}
+     \pgfpathlineto{\pgfpoint{0pt}{-0.71pt}}
      \pgfusepath{draw}
     },
    transform shape,
