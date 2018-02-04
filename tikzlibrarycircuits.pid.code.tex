@@ -306,6 +306,12 @@ rotate=180
 \makeatletter
 % Helper command to get the current coordinates in a path
 \newcommand\currentcoordinate{\the\tikz@lastxsaved,\the\tikz@lastysaved}
+
+% Helper to place crossing
+\newcommand{\crossings}[2]{
+ \fill [name intersections={of=#1 and #2, name=i, total=\t}]
+ \foreach \s in {1,...,\t}{(i-\s) node[crossing] {}};
+}
 \makeatother
 
 \endinput
