@@ -27,6 +27,8 @@
 
 \usetikzlibrary{circuits}
 \usetikzlibrary{decorations.markings}
+\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{intersections}
 \usepgflibrary{shapes.gates.pid}
 
 % Setting up an pid circuit
@@ -93,8 +95,8 @@
 
 % Path style user-friendly aliases
 \tikzset{
-functional path/.style={431},
-analogue signal path/.style={234},
+ functional path/.style={431},
+ analogue signal path/.style={234},
 }
 
 % The default symbols (you need to load a sublib to install the actual rendering).
@@ -201,7 +203,19 @@ rotate=180
 
 % Path styles
 \tikzset{
-431/.style={
+ flow path/.style={
+   /utils/exec=\csname tikz@options\endcsname,
+   decoration={
+     markings,
+     show path construction,
+     path has corners,
+     lineto code={
+       \draw[draw] (\tikzinputsegmentfirst) to [flow direction] (\tikzinputsegmentlast);
+      }
+    },
+   postaction={decorate}
+  },
+ 431/.style={
    decoration={
      markings,
      mark=between positions 0 and 1 step 0.2 with {
@@ -210,7 +224,7 @@ rotate=180
     },
    postaction={decorate}
   },
-234/.style={
+ 234/.style={
    decoration={
      markings,
      mark=between positions 0.2 and 0.8 step 0.2 with {
