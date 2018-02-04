@@ -24,6 +24,7 @@
  separate-uncertainty=true,
  bracket-unit-denominator=false,
  multi-part-units=single]{siunitx}
+\usepackage{ifthen}
 
 \usetikzlibrary{circuits}
 \usetikzlibrary{decorations.markings}
@@ -201,17 +202,26 @@ rotate=180
   }
 }
 
-% Path styles
+\newif\ifshowid\showidfalse
+\newif\ifshowidinv\showidinvfalse
+
 \tikzset{
- flow path/.style={
+ show pos/.store in=\flowpos,
+ show pos=0.5,
+ /tikz/show id/.is if=showid,
+ /tikz/show id'/.is if=showidinv,
+ /tikz/show id=false,
+ /tikz/show id'=false,
+ flow path/.style args={#1}{
+   name path global=#1,
    /utils/exec=\csname tikz@options\endcsname,
    decoration={
      markings,
-     show path construction,
      path has corners,
-     lineto code={
-       \draw[draw] (\tikzinputsegmentfirst) to [flow direction] (\tikzinputsegmentlast);
-      }
+     mark=at position \flowpos
+     with {
+     \ifshowid \node[flow direction={info sloped=#1}] {}; \else \node[flow direction] {}; \fi
+     \ifshowidinv \node[flow direction={info sloped={[rotate=-180,label distance=.5\tikzcircuitssizeunit]#1}}] {}; \else \node[flow direction] {}; \fi}
     },
    postaction={decorate}
   },
