@@ -25,6 +25,7 @@
  bracket-unit-denominator=false,
  multi-part-units=single]{siunitx}
 \usepackage{ifthen}
+\usepackage{xparse}
 
 \usetikzlibrary{circuits}
 \usetikzlibrary{decorations.markings}
@@ -206,22 +207,24 @@ rotate=180
 \newif\ifshowidinv\showidinvfalse
 
 \tikzset{
- show pos/.store in=\flowpos,
- show pos=0.5,
- /tikz/show id/.is if=showid,
- /tikz/show id'/.is if=showidinv,
- /tikz/show id=false,
- /tikz/show id'=false,
- flow path/.style args={#1}{
-   name path global=#1,
+ id/.store in=\flowid,
+ id=001,
+ pos/.store in=\flowpos,
+ pos=0.5,
+ /tikz/show/.is if=showid,
+ /tikz/show'/.is if=showidinv,
+ /tikz/show=false,
+ /tikz/show'=false,
+ flow path/.style={
+   name path global=\fsid\flowid,
    /utils/exec=\csname tikz@options\endcsname,
    decoration={
      markings,
      path has corners,
      mark=at position \flowpos
      with {
-     \ifshowid \node[flow direction={info sloped=#1}] {}; \else \node[flow direction] {}; \fi
-     \ifshowidinv \node[flow direction={info sloped={[rotate=-180,label distance=.5\tikzcircuitssizeunit]#1}}] {}; \else \node[flow direction] {}; \fi}
+       \ifshowid \node[flow direction={info sloped=\fsid\flowid}] {}; \else \node[flow direction] {}; \fi
+       \ifshowidinv \node[flow direction={info sloped={[rotate=-180,label distance=.5\tikzcircuitssizeunit]\fsid\flowid}}] {}; \else \node[flow direction] {}; \fi}
     },
    postaction={decorate}
   },
@@ -321,6 +324,26 @@ rotate=180
 \newcommand{\crossings}[2]{
  \fill [name intersections={of=#1 and #2, name=i, total=\t}]
  \foreach \s in {1,...,\t}{(i-\s) node[crossing] {}};
+}
+
+% flow system environment
+\pgfkeys{
+ flow system/.is family, /flow system,
+ default/.style =
+  {color=black, id=0, line type=solid, line width=0.25mm},
+ color/.estore in = \fscolor,
+ id/.estore in = \fsid,
+ line type/.estore in = \fslinetype,
+ line width/.estore in = \fslinewidth,
+}
+
+\NewDocumentEnvironment{flow system} { o }
+{
+ \pgfkeys{/flow system, default, #1}
+ \begin{scope}[\fscolor, line width=\fslinewidth, \fslinetype]
+  }
+  {
+ \end{scope}
 }
 \makeatother
 
