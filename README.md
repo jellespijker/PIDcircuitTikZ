@@ -33,7 +33,8 @@ Implementation of the following norms:
 2. Place the files `pid\tikzlibrarycircuits.pid.code.tex`, `pid\tikzlibrarycircuits.pid.iso14617.code.tex`, `pid\pgflibraryshapes.gates.pid.code.tex` and `pid\pgflibraryshapes.gates.pid.iso14617.code.tex` in the same folder as your main `tex` file.
 
     _System-wide installation_:  
-2. Copy files `pid\tikzlibrarycircuits.pid.code.tex` and `pid\tikzlibrarycircuits.pid.iso14617.code.tex` to `<base path LaTeX>\texmf-dist\tex\generic\pgf\frontendlayer\tikz\libraries\circuits\`
-3. Copy `pid\pgflibraryshapes.gates.pid.code.tex` and `pid\pgflibraryshapes.gates.pid.iso14617.code.tex` to `<base path LaTeX>\texmf-dist\tex\generic\pgf\libraries\shapes\circuits\`
+2. Copy files `pid\tikzlibrarycircuits.pid.code.tex`, `pid\tikzlibrarycircuits.pid.iso14617.code.tex`, `pid\pgflibraryshapes.gates.pid.code.tex`, `pid\pgflibraryshapes.gates.pid.iso14617.code.tex` and `draftdrawing.cl` in to `<TEXMFHOME>\tex\latex\PIDcircuitTikz\`  
+or clone complete project in `<TEXMFHOME>\tex\latex\`
 
 **FEEL FREE TO CONTRIBUTE!**
+All ISO 14617 symbols can be found online at [iso.org](https://www.iso.org/obp/ui#search), just search for 14617 and go to the graphical symbols tab.
