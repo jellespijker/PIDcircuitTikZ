@@ -329,7 +329,7 @@ rotate=180
 % flow system environment
 \pgfkeys{
  flow system/.is family, /flow system,
- default/.style =
+ fsdefault/.style =
   {color=black, id=0, line type=solid, line width=0.25mm},
  color/.estore in = \fscolor,
  id/.estore in = \fsid,
@@ -339,10 +339,41 @@ rotate=180
 
 \NewDocumentEnvironment{flow system} { o }
 {
- \pgfkeys{/flow system, default, #1}
+ \pgfkeys{/flow system, fsdefault, #1}
  \begin{scope}[\fscolor, line width=\fslinewidth, \fslinetype]
   }
   {
+ \end{scope}
+}
+
+% complex device environment
+\newif\ifshowcdlabel\showcdlabelfalse
+\newif\ifshowcdborder\showcdborderfalse
+
+\pgfkeys{
+ complex device/.is family, /complex device,
+ cddefault/.style =
+  {name=device,xshift=0,yshift=0,rotate=0, border=5, border line type=dash dot, border line width=0.25mm, border color=black},
+ xshift/.estore in = \cdxshift,
+ yshift/.estore in = \cdyshift,
+ rotate/.estore in = \cdrotate,
+ name/.estore in = \cdname,
+ show label/.is if = showcdlabel,
+ show border/.is if = showcdborder,
+ border/.estore in = \cdborder,
+ border line type/.estore in = \cdborderlinetype,
+ border line width/.estore in = \cdborderlinewidth,
+ border color/.estore in = \cdbordercolor,
+}
+
+\NewDocumentEnvironment{complex device} { o }
+{
+ \pgfkeys{/complex device, cddefault, #1}
+ \begin{scope}[xshift=\cdxshift, yshift=\cdyshift, rotate=\cdrotate, local bounding box=\cdname]
+  }
+  {
+  \ifshowcdborder \draw[\cdbordercolor, \cdborderlinetype, line width=\cdborderlinewidth] ([xshift=-\cdborder,yshift=\cdborder]\cdname.north west) rectangle ([xshift=\cdborder,yshift=-\cdborder]\cdname.south east); \fi
+  \ifshowcdlabel \node at ([yshift=\cdborder+4]\cdname.north) {\cdname}; \fi
  \end{scope}
 }
 \makeatother
