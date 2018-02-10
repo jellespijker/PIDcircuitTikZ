@@ -55,6 +55,7 @@
    set 2518 graphic = 2518 ISO14617 graphic,
    set 2521 graphic = 2521 ISO14617 graphic,
    set 2514 graphic = 2514 ISO14617 graphic,
+   set 2672 graphic = 2672 ISO14617 graphic,
    set 2602-bag graphic = 2602-bag ISO14617 graphic,
    set branch graphic = branch ISO14617 graphic,
    set crossing graphic = crossing ISO14617 graphic,
@@ -447,6 +448,23 @@
      \pgfpathmoveto{\pgfpoint{-1.5pt}{-1pt}}
      \pgfpathlineto{\pgfpoint{1.5pt}{-1pt}}
      \pgfusepathqstroke
+    },
+   transform shape,
+  }
+}
+
+% Rotary mixing element
+\tikzset{2672 ISO14617 graphic/.style={
+   circuit symbol lines,
+   circuit symbol size = width 2 height 1,
+   shape=generic rectangle ISO14617,
+   draw=none,
+   /pgf/generic rectangle ISO14617/before background={
+     \pgfpathmoveto{\pgfpoint{-1pt}{-1pt}}
+     \pgfpathlineto{\pgfpoint{-1pt}{1pt}}
+     \pgfpathlineto{\pgfpoint{1pt}{-1pt}}
+     \pgfpathlineto{\pgfpoint{1pt}{1pt}}
+     \pgfusepath{draw}
     },
    transform shape,
   }
