@@ -42,6 +42,7 @@
    set 1022 graphic = 1022 ISO14617 graphic,
    set 685 graphic = 685 ISO14617 graphic,
    set 301 graphic = 301 ISO14617 graphic,
+   set 2061 graphic = 2061 ISO14617 graphic,
    set 2501 graphic = 2501 ISO14617 graphic,
    set 2511 graphic = 2511 ISO14617 graphic,
    set 2602 graphic = 2602 ISO14617 graphic,
@@ -308,6 +309,23 @@
    circuit symbol lines,
    circuit symbol size = width 2.5 height 2.5,
    shape=generic rectangle ISO14617,
+   transform shape,
+  }
+}
+
+% Container tank, cistern for atmospheric pressure
+\tikzset{2061 ISO14617 graphic/.style={
+   circuit symbol lines,
+   circuit symbol size = width 2.5 height 2.5,
+   shape=generic rectangle ISO14617,
+   draw=none,
+   /pgf/generic rectangle ISO14617/before background={
+     \pgfpathmoveto{\pgfpoint{-1pt}{1pt}}
+     \pgfpathlineto{\pgfpoint{-1pt}{-1pt}}
+     \pgfpathlineto{\pgfpoint{1pt}{-1pt}}
+     \pgfpathlineto{\pgfpoint{1pt}{1pt}}
+     \pgfusepath{draw}
+   },
    transform shape,
   }
 }
