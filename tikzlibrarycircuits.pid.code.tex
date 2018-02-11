@@ -105,6 +105,8 @@
  analogue signal path/.style={234},
  mechanical link/.style={402},
  shaft/.style={402},
+ slope/.style={3061},
+ slope'/.style={3061'},
 }
 
 % The default symbols (you need to load a sublib to install the actual rendering).
@@ -216,9 +218,11 @@ rotate=180
 
 \tikzset{
  id/.store in=\flowid,
- id=001,
+ id=P001,
  pos/.store in=\flowpos,
  pos=0.5,
+ pos slope/.store in=\flowposslope,
+ pos slope=0.5,
  /tikz/show/.is if=showid,
  /tikz/show'/.is if=showidinv,
  /tikz/show=false,
@@ -257,6 +261,26 @@ rotate=180
   },
  402/.style={ % Mechanical link, shaft
    double distance=2
+  },
+ 3061/.style={ % Slope
+   decoration={
+     markings,
+     mark=at position \flowposslope with {
+       \draw (-.5\tikzcircuitssizeunit,0.7\tikzcircuitssizeunit) to (-0.5\tikzcircuitssizeunit,0.2\tikzcircuitssizeunit)
+        to (0.5\tikzcircuitssizeunit,0.2\tikzcircuitssizeunit) to (-.5\tikzcircuitssizeunit,0.7\tikzcircuitssizeunit);
+      }
+    },
+   postaction={decorate}
+  },
+ 3061'/.style={ % Slope
+   decoration={
+     markings,
+     mark=at position \flowposslope with {
+       \draw (.5\tikzcircuitssizeunit,0.7\tikzcircuitssizeunit) to (0.5\tikzcircuitssizeunit,0.2\tikzcircuitssizeunit)
+        to (-.5\tikzcircuitssizeunit,0.2\tikzcircuitssizeunit) to (.5\tikzcircuitssizeunit,0.7\tikzcircuitssizeunit);
+      }
+    },
+   postaction={decorate}
   },
 }
 
@@ -344,6 +368,7 @@ rotate=180
   {color=black, id=0, line type=solid, line width=0.25mm},
  color/.estore in = \fscolor,
  id/.estore in = \fsid,
+ id=,
  line type/.estore in = \fslinetype,
  line width/.estore in = \fslinewidth,
 }
