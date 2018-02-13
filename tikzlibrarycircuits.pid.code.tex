@@ -20,10 +20,7 @@
 % OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 % SOFTWARE.
 
-\usepackage[per-mode=fraction,
- separate-uncertainty=true,
- bracket-unit-denominator=false,
- multi-part-units=single]{siunitx}
+\usepackage{siunitx}
 \usepackage{ifthen}
 \usepackage{xparse}
 
@@ -73,6 +70,10 @@
  straight tube heat exchanger/.style={2511={#1}},
  cooling tower/.style={2521={#1}},
  coil shaped heat exchanger/.style={2514={#1}},
+ sensor/.style={751={#1}},
+ conveyor/.style={3801={#1}},
+ screw type/.style={3830={#1}},
+ feeding funnel/.style={3806={#1}},
 }
 
 % Annotations user-friendly aliases
@@ -101,12 +102,12 @@
 
 % Path style user-friendly aliases
 \tikzset{
- functional path/.style={431},
- analogue signal path/.style={234},
- mechanical link/.style={402},
- shaft/.style={402},
- slope/.style={3061},
- slope'/.style={3061'},
+functional path/.style={431},
+analogue signal path/.style={234},
+mechanical link/.style={402},
+shaft/.style={402},
+slope/.style={3061},
+slope'/.style={3061'},
 }
 
 % The default symbols (you need to load a sublib to install the actual rendering).
@@ -139,6 +140,10 @@
  circuit declare symbol = 2511, % Heat-exchanger with straight tubes (fixed-tube plates)
  circuit declare symbol = 2514, % Heat-exchanger with coil-shaped tubes
  circuit declare symbol = 2521, % Cooling tower
+ circuit declare symbol = 751, % Sensor
+ circuit declare symbol = 3801, % Conveyor
+ circuit declare symbol = 3830, % Screw type
+ circuit declare symbol = 3806, % Feeding funnel, hopper
  circuit declare symbol = flow direction,
  circuit declare symbol = flow direction',
  circuit declare symbol = branch,
@@ -217,71 +222,71 @@ rotate=180
 \newif\ifshowidinv\showidinvfalse
 
 \tikzset{
- id/.store in=\flowid,
- id=P001,
- pos/.store in=\flowpos,
- pos=0.5,
- pos slope/.store in=\flowposslope,
- pos slope=0.5,
- /tikz/show/.is if=showid,
- /tikz/show'/.is if=showidinv,
- /tikz/show=false,
- /tikz/show'=false,
- flow path/.style={
-   name path global=\fsid\flowid,
-   /utils/exec=\csname tikz@options\endcsname,
-   decoration={
-     markings,
-     path has corners,
-     mark=at position \flowpos
-     with {
-       \ifshowid \node[flow direction={info sloped=\fsid\flowid}] {}; \else \node[flow direction] {}; \fi
-       \ifshowidinv \node[flow direction={info sloped={[rotate=-180,label distance=.5\tikzcircuitssizeunit]\fsid\flowid}}] {}; \else \node[flow direction] {}; \fi}
-    },
-   postaction={decorate}
-  },
- 431/.style={ % Pure functional type
-   decoration={
-     markings,
-     mark=between positions 0 and 1 step 0.2 with {
-       \draw (-0.25\tikzcircuitssizeunit,-0.25\tikzcircuitssizeunit) to (0.25\tikzcircuitssizeunit,0.25\tikzcircuitssizeunit);
-      }
-    },
-   postaction={decorate}
-  },
- 234/.style={
-   decoration={
-     markings,
-     mark=between positions 0.2 and 0.8 step 0.2 with {
-       \draw (-0.25\tikzcircuitssizeunit,-0.25\tikzcircuitssizeunit) to (-0.25\tikzcircuitssizeunit,0.125\tikzcircuitssizeunit)
-       arc (180:0:0.25\tikzcircuitssizeunit) to (0.25\tikzcircuitssizeunit,-0.25\tikzcircuitssizeunit);
-      }
-    },
-   postaction={decorate}
-  },
- 402/.style={ % Mechanical link, shaft
-   double distance=2
-  },
- 3061/.style={ % Slope
-   decoration={
-     markings,
-     mark=at position \flowposslope with {
-       \draw (-.5\tikzcircuitssizeunit,0.7\tikzcircuitssizeunit) to (-0.5\tikzcircuitssizeunit,0.2\tikzcircuitssizeunit)
-        to (0.5\tikzcircuitssizeunit,0.2\tikzcircuitssizeunit) to (-.5\tikzcircuitssizeunit,0.7\tikzcircuitssizeunit);
-      }
-    },
-   postaction={decorate}
-  },
- 3061'/.style={ % Slope
-   decoration={
-     markings,
-     mark=at position \flowposslope with {
-       \draw (.5\tikzcircuitssizeunit,0.7\tikzcircuitssizeunit) to (0.5\tikzcircuitssizeunit,0.2\tikzcircuitssizeunit)
-        to (-.5\tikzcircuitssizeunit,0.2\tikzcircuitssizeunit) to (.5\tikzcircuitssizeunit,0.7\tikzcircuitssizeunit);
-      }
-    },
-   postaction={decorate}
-  },
+id/.store in=\flowid,
+id=P001,
+pos/.store in=\flowpos,
+pos=0.5,
+pos slope/.store in=\flowposslope,
+pos slope=0.5,
+/tikz/show/.is if=showid,
+/tikz/show'/.is if=showidinv,
+/tikz/show=false,
+/tikz/show'=false,
+flow path/.style={
+  name path global=\fsid\flowid,
+  /utils/exec=\csname tikz@options\endcsname,
+  decoration={
+    markings,
+    path has corners,
+    mark=at position \flowpos
+    with {
+      \ifshowid \node[flow direction={info sloped=\fsid\flowid}] {}; \else \node[flow direction] {}; \fi
+      \ifshowidinv \node[flow direction={info sloped={[rotate=-180,label distance=.5\tikzcircuitssizeunit]\fsid\flowid}}] {}; \else \node[flow direction] {}; \fi}
+   },
+  postaction={decorate}
+ },
+431/.style={ % Pure functional type
+  decoration={
+    markings,
+    mark=between positions 0 and 1 step 0.2 with {
+      \draw (-0.25\tikzcircuitssizeunit,-0.25\tikzcircuitssizeunit) to (0.25\tikzcircuitssizeunit,0.25\tikzcircuitssizeunit);
+     }
+   },
+  postaction={decorate}
+ },
+234/.style={
+  decoration={
+    markings,
+    mark=between positions 0.2 and 0.8 step 0.2 with {
+      \draw (-0.25\tikzcircuitssizeunit,-0.25\tikzcircuitssizeunit) to (-0.25\tikzcircuitssizeunit,0.125\tikzcircuitssizeunit)
+      arc (180:0:0.25\tikzcircuitssizeunit) to (0.25\tikzcircuitssizeunit,-0.25\tikzcircuitssizeunit);
+     }
+   },
+  postaction={decorate}
+ },
+402/.style={ % Mechanical link, shaft
+  double distance=2
+ },
+3061/.style={ % Slope
+  decoration={
+    markings,
+    mark=at position \flowposslope with {
+      \draw (-.5\tikzcircuitssizeunit,0.7\tikzcircuitssizeunit) to (-0.5\tikzcircuitssizeunit,0.2\tikzcircuitssizeunit)
+      to (0.5\tikzcircuitssizeunit,0.2\tikzcircuitssizeunit) to (-.5\tikzcircuitssizeunit,0.7\tikzcircuitssizeunit);
+     }
+   },
+  postaction={decorate}
+ },
+3061'/.style={ % Slope
+decoration={
+  markings,
+  mark=at position \flowposslope with {
+    \draw (.5\tikzcircuitssizeunit,0.7\tikzcircuitssizeunit) to (0.5\tikzcircuitssizeunit,0.2\tikzcircuitssizeunit)
+    to (-.5\tikzcircuitssizeunit,0.2\tikzcircuitssizeunit) to (.5\tikzcircuitssizeunit,0.7\tikzcircuitssizeunit);
+   }
+ },
+postaction={decorate}
+},
 }
 
 

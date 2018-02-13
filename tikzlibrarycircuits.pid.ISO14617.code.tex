@@ -56,6 +56,10 @@
    set 2521 graphic = 2521 ISO14617 graphic,
    set 2514 graphic = 2514 ISO14617 graphic,
    set 2672 graphic = 2672 ISO14617 graphic,
+   set 3801 graphic = 3801 ISO14617 graphic,
+   set 3830 graphic = 3830 ISO14617 graphic,
+   set 3806 graphic = 3806 ISO14617 graphic,
+   set 751 graphic = 751 ISO14617 graphic,
    set 2602-bag graphic = 2602-bag ISO14617 graphic,
    set branch graphic = branch ISO14617 graphic,
    set crossing graphic = crossing ISO14617 graphic,
@@ -252,6 +256,25 @@
    shape=circle pid,
    fill=white,
    outer sep=.25\pgflinewidth
+  }
+}
+
+% Sensor
+\tikzset{751 ISO14617 graphic/.style={
+   circuit symbol lines,
+   circuit symbol size = width 3 height 2.5,
+   shape=generic rectangle ISO14617,
+   draw=none,
+   /pgf/generic rectangle ISO14617/before background={
+     \pgfpathmoveto{\pgfpoint{-1pt}{0pt}}
+     \pgfpathlineto{\pgfpoint{-0.65pt}{1pt}}
+     \pgfpathlineto{\pgfpoint{1pt}{1pt}}
+     \pgfpathlineto{\pgfpoint{1pt}{-1pt}}
+     \pgfpathlineto{\pgfpoint{-0.65pt}{-1pt}}
+     \pgfpathlineto{\pgfpoint{-1pt}{0pt}}
+     \pgfusepath{draw}
+    },
+   transform shape,
   }
 }
 
@@ -524,6 +547,32 @@
   }
 }
 
+% Conveyor
+\tikzset{3801 ISO14617 graphic/.style={
+   circuit symbol lines,
+   circuit symbol size = width 10 height 2.5,
+   shape=generic rectangle ISO14617,
+   transform shape,
+  }
+}
+
+% Feeding funnel, hopper
+\tikzset{3806 ISO14617 graphic/.style={
+   circuit symbol lines,
+   circuit symbol size = width 2.5 height 2.5,
+   shape=generic rectangle ISO14617,
+   draw=none,
+   /pgf/generic rectangle ISO14617/before background={
+     \pgfpathmoveto{\pgfpoint{-1pt}{1pt}}
+     \pgfpathlineto{\pgfpoint{-0.5pt}{-1pt}}
+     \pgfpathmoveto{\pgfpoint{1pt}{1pt}}
+     \pgfpathlineto{\pgfpoint{0.5pt}{-1pt}}
+     \pgfusepath{draw}
+    },
+   transform shape,
+  }
+}
+
 % Spring
 \tikzset{2002 ISO14617 graphic/.style={
    circuit symbol lines,
@@ -537,6 +586,25 @@
      \pgfpathlineto{\pgfpoint{1pt}{-0.35pt}}
      \pgfpathlineto{\pgfpoint{-1pt}{-0.7pt}}
      \pgfpathlineto{\pgfpoint{0pt}{-1pt}}
+     \pgfusepath{draw}
+    },
+   transform shape,
+  }
+}
+
+% Screw type
+\tikzset{3830 ISO14617 graphic/.style={
+   circuit symbol lines,
+   circuit symbol size = width 1.5 height 1,
+   shape=generic rectangle ISO14617,
+   draw=none,
+   /pgf/generic rectangle ISO14617/before background={
+     \pgfpathmoveto{\pgfpoint{-1pt}{0pt}}
+     \pgfpathlineto{\pgfpoint{1pt}{0pt}}
+     \pgfpathmoveto{\pgfpoint{0.7pt}{0pt}}
+     \pgfpathlineto{\pgfpoint{0.35pt}{1pt}}
+     \pgfpathlineto{\pgfpoint{-0.35pt}{-1pt}}
+     \pgfpathlineto{\pgfpoint{-0.7pt}{0pt}}
      \pgfusepath{draw}
     },
    transform shape,
