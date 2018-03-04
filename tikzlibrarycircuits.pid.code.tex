@@ -389,6 +389,27 @@ postaction={decorate}
  \end{scope}
 }
 
+% control system environment
+\pgfkeys{
+ control system/.is family, /control system,
+ csdefault/.style =
+  {color=black, id=0, line type=dashed, line width=0.15mm},
+ color/.estore in = \cscolor,
+ id/.estore in = \csid,
+ id=,
+ line type/.estore in = \cslinetype,
+ line width/.estore in = \cslinewidth,
+}
+
+\NewDocumentEnvironment{control system} { o }
+{
+ \pgfkeys{/control system, csdefault, #1}
+ \begin{scope}[\cscolor, line width=\cslinewidth, \cslinetype]
+  }
+  {
+ \end{scope}
+}
+
 % complex device environment
 \newif\ifshowcdlabel\showcdlabelfalse
 \newif\ifshowcdborder\showcdborderfalse
