@@ -105,6 +105,7 @@
 % Path style user-friendly aliases
 \tikzset{
 functional path/.style={431},
+signal flow/.style={249},
 analogue signal path/.style={234},
 mechanical link/.style={402},
 shaft/.style={402},
@@ -246,7 +247,18 @@ flow path/.style={
       \ifshowidinv \node[flow direction={info sloped={[rotate=-180,label distance=.5\tikzcircuitssizeunit]\fsid\flowid}}] {}; \else \node[flow direction] {}; \fi}
    },
   postaction={decorate}
- },
+  },
+ 249/.style={ % Direction of propagation, energy, or signal flow (simplex)
+   decoration={
+     markings,
+     path has corners,
+     mark=at position \flowpos
+     with {
+     \draw[solid] (-0.25\tikzcircuitssizeunit,-0.35\tikzcircuitssizeunit) to (0.25\tikzcircuitssizeunit,0) to (-0.25\tikzcircuitssizeunit,0.35\tikzcircuitssizeunit);
+     }
+    },
+   postaction={decorate}
+  },
 431/.style={ % Pure functional type
   decoration={
     markings,
