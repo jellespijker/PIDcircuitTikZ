@@ -59,6 +59,7 @@
  envelope/.style={301={#1}},
  tank/.style={301={#1}},
  tank atmospheric pressure/.style={2061={#1}},
+ open store/.style={2065={#1}},
  container/.style={2061={#1}},
  cistern/.style={2061={#1}},
  boiler/.style={2531={#1}},
@@ -85,6 +86,7 @@
  centrifugal/.style={2322},
  non return/.style={2111},
  globe/.style={2121},
+ gate/.style={2124},
  safety function/.style={2112},
  central control room/.style={1101},
  local control room/.style={1103},
@@ -100,6 +102,7 @@
  quantity transition to lower/.style={131},
  quantity transition to higher and lower/.style={132},
  device for separating/.style={2601},
+ device for mixing/.style={2671},
 }
 
 % Path style user-friendly aliases
@@ -147,6 +150,7 @@ slope'/.style={3061'},
  circuit declare symbol = 3801, % Conveyor
  circuit declare symbol = 3830, % Screw type
  circuit declare symbol = 3806, % Feeding funnel, hopper
+ circuit declare symbol = 2065, % Open store
  circuit declare symbol = flow direction,
  circuit declare symbol = flow direction',
  circuit declare symbol = branch,
@@ -263,7 +267,7 @@ flow path/.style={
   decoration={
     markings,
     mark=between positions 0 and 1 step 0.2 with {
-      \draw (-0.25\tikzcircuitssizeunit,-0.25\tikzcircuitssizeunit) to (0.25\tikzcircuitssizeunit,0.25\tikzcircuitssizeunit);
+      \draw[solid] (-0.25\tikzcircuitssizeunit,-0.25\tikzcircuitssizeunit) to (0.25\tikzcircuitssizeunit,0.25\tikzcircuitssizeunit);
      }
    },
   postaction={decorate}
@@ -272,7 +276,7 @@ flow path/.style={
   decoration={
     markings,
     mark=between positions 0.2 and 0.8 step 0.2 with {
-      \draw (-0.25\tikzcircuitssizeunit,-0.25\tikzcircuitssizeunit) to (-0.25\tikzcircuitssizeunit,0.125\tikzcircuitssizeunit)
+      \draw[solid] (-0.25\tikzcircuitssizeunit,-0.25\tikzcircuitssizeunit) to (-0.25\tikzcircuitssizeunit,0.125\tikzcircuitssizeunit)
       arc (180:0:0.25\tikzcircuitssizeunit) to (0.25\tikzcircuitssizeunit,-0.25\tikzcircuitssizeunit);
      }
    },
@@ -368,6 +372,15 @@ postaction={decorate}
    ([xshift=-0.75\tikzcircuitssizeunit,yshift=0.75\tikzcircuitssizeunit]\tikzlastnode.center) edge[line to] ([xshift=0.75\tikzcircuitssizeunit,yshift=0.75\tikzcircuitssizeunit]\tikzlastnode.center)
    ([xshift=-0.25\tikzcircuitssizeunit,yshift=0.75\tikzcircuitssizeunit]\tikzlastnode.center) edge[line to] ([xshift=0.65\tikzcircuitssizeunit,yshift=0.35\tikzcircuitssizeunit]\tikzlastnode.center)
   },
+  circuit declare annotation={2671}{0pt} % N
+   {
+    ([xshift=-0.75\tikzcircuitssizeunit,yshift=0.75\tikzcircuitssizeunit]\tikzlastnode.center) edge[line to] ([xshift=0.75\tikzcircuitssizeunit,yshift=0.75\tikzcircuitssizeunit]\tikzlastnode.center)
+    ([xshift=0.25\tikzcircuitssizeunit,yshift=0.75\tikzcircuitssizeunit]\tikzlastnode.center) edge[-,line to] ([xshift=-0.65\tikzcircuitssizeunit,yshift=0.35\tikzcircuitssizeunit]\tikzlastnode.center)
+   },
+  circuit declare annotation={2124}{0pt} % Gate type
+   {
+    (\tikzlastnode.north) edge[-,line to] (\tikzlastnode.south)
+   },
 }
 
 \makeatletter
@@ -405,7 +418,7 @@ postaction={decorate}
 \pgfkeys{
  control system/.is family, /control system,
  csdefault/.style =
-  {color=black, id=0, line type=dashed, line width=0.15mm},
+  {color=black, id=0, line type=densely dashed, line width=0.15mm},
  color/.estore in = \cscolor,
  id/.estore in = \csid,
  id=,
@@ -429,7 +442,7 @@ postaction={decorate}
 \pgfkeys{
  complex device/.is family, /complex device,
  cddefault/.style =
-  {name=device,xshift=0,yshift=0,rotate=0, border=5, border line type=dash dot, border line width=0.25mm, border color=black},
+  {name=device,xshift=0,yshift=0,rotate=0, border=5, border line type=dash dot, border line width=0.25mm, border color=black, scale=1},
  xshift/.estore in = \cdxshift,
  yshift/.estore in = \cdyshift,
  rotate/.estore in = \cdrotate,
@@ -440,12 +453,13 @@ postaction={decorate}
  border line type/.estore in = \cdborderlinetype,
  border line width/.estore in = \cdborderlinewidth,
  border color/.estore in = \cdbordercolor,
+ scale/.estore in = \cdborderscale,
 }
 
 \NewDocumentEnvironment{complex device} { o }
 {
  \pgfkeys{/complex device, cddefault, #1}
- \begin{scope}[xshift=\cdxshift, yshift=\cdyshift, rotate=\cdrotate, local bounding box=\cdname]
+ \begin{scope}[xshift=\cdxshift, yshift=\cdyshift, rotate=\cdrotate, local bounding box=\cdname, transform canvas={scale=\cdborderscale}]
   }
   {
   \ifshowcdborder \draw[\cdbordercolor, \cdborderlinetype, line width=\cdborderlinewidth] ([xshift=-\cdborder,yshift=\cdborder]\cdname.north west) rectangle ([xshift=\cdborder,yshift=-\cdborder]\cdname.south east); \fi

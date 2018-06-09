@@ -43,6 +43,7 @@
    set 685 graphic = 685 ISO14617 graphic,
    set 301 graphic = 301 ISO14617 graphic,
    set 2061 graphic = 2061 ISO14617 graphic,
+   set 2065 graphic = 2065 ISO14617 graphic,
    set 2501 graphic = 2501 ISO14617 graphic,
    set 2511 graphic = 2511 ISO14617 graphic,
    set 2602 graphic = 2602 ISO14617 graphic,
@@ -348,6 +349,32 @@
      \pgfpathlineto{\pgfpoint{-1pt}{-1pt}}
      \pgfpathlineto{\pgfpoint{1pt}{-1pt}}
      \pgfpathlineto{\pgfpoint{1pt}{1pt}}
+     \pgfusepath{draw}
+    },
+   transform shape,
+  }
+}
+
+% Open store
+\tikzset{2065 ISO14617 graphic/.style={
+   circuit symbol lines,
+   circuit symbol size = width 2.5 height 2.5,
+   shape=generic rectangle ISO14617,
+   draw=none,
+   /pgf/generic rectangle ISO14617/before background={
+     \pgfpathmoveto{\pgfpoint{-1pt}{-1pt}}
+     \pgfpathlineto{\pgfpoint{1pt}{-1pt}}
+     \pgfpathlineto{\pgfpoint{0pt}{1pt}}
+     \pgfusepath{draw}
+     % \pgfsetdash{{7pt}{1pt}{1pt}{1pt}{1pt}{1pt}{21pt}{1pt}{1pt}{1pt}{1pt}{1pt}{8pt}}{0}
+     \pgfpathmoveto{\pgfpoint{-0.8pt}{-1pt}}
+     \pgfpathlineto{\pgfpointadd{\pgfpoint{-0.8pt}{-1pt}}{\pgfpointpolar{56.52883529}{0.5pt}}}
+     \pgfpathmoveto{\pgfpointadd{\pgfpoint{-0.8pt}{-1pt}}{\pgfpointpolar{56.52883529}{1.25pt}}}
+     \pgfpathlineto{\pgfpointadd{\pgfpoint{-0.8pt}{-1pt}}{\pgfpointpolar{56.52883529}{1.5pt}}}
+     % \pgfpathmoveto{\pgfpointpolar{45}{0.25pt}}
+     % \pgfpathlineto{\pgfpointpolar{45}{0.25pt}}
+     % \pgfpathmoveto{\pgfpointpolar{45}{0.25pt}}
+     % \pgfpathlineto{\pgfpointpolar{45}{0.25pt}}
      \pgfusepath{draw}
     },
    transform shape,
