@@ -173,33 +173,77 @@
  \inheritanchor[from=rectangle]{south west}
  \inheritanchor[from=rectangle]{south east}
  \inheritbackgroundpath[from=rectangle]
- \anchor{input in}{
-  \pgf@process{\northeast}%
-  \pgf@ya=1.1\pgf@y%
-  \pgf@process{\southwest}%
-  \pgf@y=.5\pgf@y%
-  \advance\pgf@y by \pgf@ya%
+ \anchor{cold}{
+ \pgf@process{\northeast}%
+ \pgf@ya=1.8\pgf@y%
+ \pgf@xa=.5\pgf@x%
+ \pgf@process{\southwest}%
+ \pgf@y.5\pgf@y%
+ \pgf@x.5\pgf@x%
+ \advance\pgf@y by \pgf@ya%
+ \advance\pgf@x by \pgf@xa%
+ \pgf@y=.5\pgf@y%
+ \pgf@x=.5\pgf@x%
  }
- \anchor{output in}{%
-  \pgf@process{\southwest}%
-  \pgf@ya=-1.1\pgf@y%
-  \pgf@process{\northeast}%
-  \pgf@y=-.5\pgf@y%
-  \advance\pgf@y by \pgf@ya%
+ \anchor{hot}{
+ \pgf@process{\northeast}%
+ \pgf@ya=-1.8\pgf@y%
+ \pgf@xa=-.5\pgf@x%
+ \pgf@process{\northeast}%
+ \pgf@y.5\pgf@y%
+ \pgf@x.5\pgf@x%
+ \advance\pgf@y by \pgf@ya%
+ \advance\pgf@x by \pgf@xa%
+ \pgf@y=.5\pgf@y%
+ \pgf@x=.5\pgf@x%
  }
- \anchor{input out}{
-  \pgf@process{\northeast}%
-  \pgf@ya=-1.1\pgf@y%
-  \pgf@process{\southwest}%
-  \pgf@y=-.5\pgf@y%
-  \advance\pgf@y by \pgf@ya%
+
+ \anchor{hot out}{
+ \pgf@process{\northeast}%
+ \pgf@ya=-1.8\pgf@y%
+ \pgf@xa=-2.5\pgf@x%
+ \pgf@process{\northeast}%
+ \pgf@y.5\pgf@y%
+ \pgf@x.5\pgf@x%
+ \advance\pgf@y by \pgf@ya%
+ \advance\pgf@x by \pgf@xa%
+ \pgf@y=.5\pgf@y%
+ \pgf@x.5\pgf@x%
  }
- \anchor{output out}{%
-  \pgf@process{\southwest}%
-  \pgf@ya=1.1\pgf@y%
-  \pgf@process{\northeast}%
-  \pgf@y=.5\pgf@y%
-  \advance\pgf@y by \pgf@ya%
+
+ \anchor{hot in}{
+ \pgf@process{\northeast}%
+ \pgf@ya=-1.8\pgf@y%
+ \pgf@process{\northeast}%
+ \pgf@y.5\pgf@y%
+ \advance\pgf@y by \pgf@ya%
+ \pgf@y=.5\pgf@y%
+ }
+
+ \anchor{cold in}{
+ \pgf@process{\northeast}%
+ \pgf@ya=1.8\pgf@y%
+ \pgf@xa=-1.5\pgf@x%
+ \pgf@process{\southwest}%
+ \pgf@y.5\pgf@y%
+ \pgf@x.5\pgf@x%
+ \advance\pgf@y by \pgf@ya%
+ \advance\pgf@x by \pgf@xa%
+ \pgf@y=.5\pgf@y%
+ \pgf@x.5\pgf@x%
+ }
+
+ \anchor{cold out}{
+ \pgf@process{\northeast}%
+ \pgf@ya=1.8\pgf@y%
+ \pgf@xa=1.5\pgf@x%
+ \pgf@process{\southwest}%
+ \pgf@y.5\pgf@y%
+ \pgf@x.5\pgf@x%
+ \advance\pgf@y by \pgf@ya%
+ \advance\pgf@x by \pgf@xa%
+ \pgf@y=.5\pgf@y%
+ \pgf@x.5\pgf@x%
  }
 
  \beforebackgroundpath {
@@ -220,16 +264,14 @@
   \pgfpathlineto{\pgfpoint{-0.5pt}{-0.85pt}}
   \pgfpathclose
   \pgfusepath{draw}
-  \pgftransformreset
-  \pgftransformshift{}
-  \pgfmathsetlength{\pgf@ya}{\pgfkeysvalueof{/pgf/minimum width}}
-  \pgftransformscale{\pgf@sys@tonumber{\pgf@ya}/2}
-  \pgfpathcircle{\pgfpoint{-0.6pt}{0.7pt}}{0.5pt}
+  \pgfsys@endscope
+
+  \pgftransformyscale{\pgf@sys@tonumber{\pgf@xa}/48}
+  \pgfsys@beginscope
+  \pgfpathcircle{\pgfpoint{0pt}{0pt}}{0.5pt}
   \pgfusepath{draw}
-  \pgfpathmoveto{\pgfqpoint{0.15pt}{0.7pt}}
-  \pgfpatharc{0.35}{50}{0.7pt}
-  \pgfpathmoveto{\pgfqpoint{0.15pt}{0.7pt}}
-  \pgfpatharc{0.35}{-50}{0.7pt}
+  \pgfpathmoveto{\pgfqpoint{0.5734064310022943pt}{0.4015035054457322pt}}
+  \pgfpatharc{35}{-35}{0.7pt}
   \pgfusepath{draw}
   \pgfsys@endscope
  }
